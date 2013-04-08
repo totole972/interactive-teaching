@@ -6,7 +6,7 @@ class Question {
     //Teacher creator
     boolean isOpen
     boolean isVisible
-    boolean StudentAnswers
+    boolean studentAnswers
     static hasMany = [answers:Answer]
 
     def addAnswer(Answer answer) {
@@ -42,7 +42,7 @@ class Question {
         label blank:false, nullable:false
         //creator nullable: false
         isOpen default : false
-        StudentAnswers default : true
+        studentAnswers default : true
         isVisible  default : false
     }
 }

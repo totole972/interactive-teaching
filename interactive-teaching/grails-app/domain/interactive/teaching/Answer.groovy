@@ -24,6 +24,6 @@ class Answer {
     }
     
     static constraints = {
-        libelle blank: false, nullable: false
+        label blank: false, nullable: false
     }
 }
