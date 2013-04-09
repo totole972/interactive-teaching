@@ -6,6 +6,10 @@ class Answer {
     String comment
     boolean isCorrect
     //Question question
+
+    static constraints = {
+        label blank: false, nullable: false
+    }
     
     def addSession() {
 
@@ -22,8 +26,5 @@ class Answer {
     def rateAnswer() {
 
     }
-    
-    static constraints = {
-        label blank: false, nullable: false
-    }
+
 }
