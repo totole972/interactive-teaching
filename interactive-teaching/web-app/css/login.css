@@ -26,6 +26,81 @@ body {
 }
 
 #slideshow {
+    background-color: #F5F5F5;
+    border: 3px solid #FFFFFF;
+    height: 630px;
+    position: absolute;
+    width: 630px;
+    margin-top: 30px;
+    margin-right: 30px;
+    right: 0;
+    top: 0;
+
+    -moz-box-shadow: 0 0 22px #111;
+    -webkit-box-shadow: 0 0 22px #111;
+    box-shadow: 0 0 22px #111;
+}
+
+#slideshow ul {
+	padding: 0;
+	margin: 0;
+    height: 630px;
+    list-style: none outside none;
+    overflow: hidden;
+    position: absolute;
+    width: 630px;
+}
+
+#slideshow li {
+    position: absolute;
+    display: none;
+    z-index: 10;
+}
+
+#slideshow li:first-child {
+    display: block;
+    z-index: 1000;
+}
+
+#slideshow .slideActive {
+    z-index: 1000;
+}
+
+#slideshow canvas {
+    display: none;
+    position: absolute;
+    z-index: 100;
+}
+
+#slideshow .arrow {
+    height: 86px;
+    width: 60px;
+    position: absolute;
+    background: url('../images/arrows.png') no-repeat;
+    top: 50%;
+    margin-top: -43px;
+    cursor: pointer;
+    z-index: 5000;
+}
+
+#slideshow .previous {
+	background-position: left top;
+	left: 0;
+}
+#slideshow .previous:hover {
+	background-position: left bottom;
+}
+
+#slideshow .next {
+	background-position: right top;
+	right: 0;
+}
+
+#slideshow .next:hover {
+	background-position: right bottom;
+}
+
+/*.slideshow {
 	background-color: #fff;
     height: 630px;
     width: 630px;
@@ -34,7 +109,9 @@ body {
 	position: absolute;
 	right: 0;
 	top: 0;
-}
+	overflow: hidden;
+    border: 3px solid #F2F2F2;
+}*/
 
 .login {
 	background-color: #fff;
