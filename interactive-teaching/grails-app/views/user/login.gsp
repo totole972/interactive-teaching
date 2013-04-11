@@ -13,41 +13,45 @@
         </g:if>
         <div id="container">
             <g:form class="login" action="authenticate" method="post"> <!-- http://www.red-team-design.com/slick-login-form-with-html5-css3 -->
-	            <h1>Welcome</h1>
 	            <fieldset id="fields">
-	                <input id="useremail" type="email" name="email" placeholder="Enter you email address." required>
-	                <input id="password" type="password" name="password" placeholder="Enter you favorite password." required>
+	                <input class="useremail" type="email" name="email" placeholder="Enter you email address." required>
+	                <input class="password" type="password" name="password" placeholder="Enter you password." required>
 	            </fieldset>
-	            <fieldset id="checkboxes">
-	                <input name="remember" type="checkbox" value="remember">
-	                <label for="remember">Keep me logged in</label>
-	            </fieldset>
-	            <fieldset id="actions">
-	                <input type="submit" id="submit" value="Here we go!">
-	                <a href="">Forgot your password?</a><a href="">Register</a>
-	            </fieldset>
+	            <table>
+                    <tbody>
+                        <tr>
+                            <td id="table-options">
+					            <fieldset id="options">
+					                <input id="remember" type="checkbox" name="remember">
+					                <label for="remember">Keep me logged in</label>
+					            </fieldset>
+				            </td>
+				            <td id="table-actions">
+					            <fieldset id="action-login">
+					                <input type="submit" class="submit" value="Here we go!">
+					            </fieldset>
+				            </td>
+			            </tr>
+		            </tbody>
+	            </table>
 	        </g:form>
-	        <g:form class="login2" action="authenticate" method="post">
-	            <h1>Welcome</h1>
+	        <g:form class="register" action="register" method="post">
+                <h1>Wanna enjoy learning? <strong>Join us!</strong></h1>
 	            <fieldset id="fields">
-	                <input id="useremail" type="email" placeholder="Enter you email address." required>
-	                <input id="password" type="password" placeholder="Enter you favorite password." required>
+	                <input class="useremail" type="email" name="email" placeholder="Enter you email address." required>
+	                <input class="password" type="password" name="password1" placeholder="Enter you password." required>
+	                <input class="password" type="password"name="password2" placeholder="Re-enter you password." required>
 	            </fieldset>
-	            <fieldset id="checkboxes">
-	                <input name="remember" type="checkbox" value="remember">
-	                <label for="remember">Keep me logged in</label>
-	            </fieldset>
-	            <fieldset id="actions">
-	                <input type="submit" id="submit" value="Here we go!">
-	                <a href="">Forgot your password?</a><a href="">Register</a>
+	            <fieldset id="action-signup">
+	                <input type="submit" class="submit" value="Sign me up">
 	            </fieldset>
 	        </g:form>
 	        <div id="slideshow"> <!-- http://tutorialzine.com/2010/09/html5-canvas-slideshow-jquery/ -->
                 <ul>
-                    <li><img src="${resource(dir: 'images/slides', file: 'cougar.jpg')}" width="630" height="630" alt= "Cougar"/>
-                    <li><img src="${resource(dir: 'images/slides', file: 'howling.jpg')}" width="630" height="630" alt= "Howling"/>
-                    <li><img src="${resource(dir: 'images/slides', file: 'kitten.jpg')}" width="630" height="630" alt= "Kitten"/>
-                    <li><img src="${resource(dir: 'images/slides', file: 'lions.jpg')}" width="630" height="630" alt= "Lions"/>
+                    <!-- Required size: 640x410 -->
+                    <li><img src="${resource(dir: 'images/slides', file: 'sample_1.jpg')}" width="640" height="410" alt= "Sample 1"/>
+                    <li><img src="${resource(dir: 'images/slides', file: 'sample_2.jpg')}" width="640" height="410" alt= "Sample 2"/>
+                    <li><img src="${resource(dir: 'images/slides', file: 'sample_3.jpg')}" width="640" height="410" alt= "Sample 3"/>
                 </ul>
                 <span class="arrow previous"></span>
                 <span class="arrow next"></span>

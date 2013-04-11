@@ -20,4 +20,6 @@ class UserController {
         session.user = null
         redirect(controller:"user", action:"list")
     }
+    
+    def register = {}
 }

@@ -1,9 +1,9 @@
-import interactive.teaching.User
+import interactive.teaching.Student
 
 class BootStrap {
 
     def init = { servletContext ->
-        def student1 = new User(
+        def student1 = new Student(
             email: "damien.arondel@free.fr",
             password: "unpassword",
             firstName: "Damien",
