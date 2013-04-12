@@ -5,7 +5,6 @@ class Answer {
     String label
     String comment
     boolean isCorrect
-    //Question question
 
     static constraints = {
         label blank: false, nullable: false
