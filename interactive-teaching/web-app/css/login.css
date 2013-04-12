@@ -311,11 +311,11 @@ table {
     width: 280px;
 }
 
-#table-options {
+.table-options {
     text-align: left;
 }
 
-#table-actions {
+.table-actions {
     text-align: right;
 }
 
@@ -365,10 +365,6 @@ h1 {
 
 h1 strong {
 	color: #8f5a0a;
-}
-
-#action-signup {
-	text-align: center;
 }
 
 #back {

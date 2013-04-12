@@ -20,13 +20,13 @@
 	            <table>
                     <tbody>
                         <tr>
-                            <td id="table-options">
+                            <td class="table-options">
 					            <fieldset id="options">
 					                <input id="remember" type="checkbox" name="remember">
 					                <label for="remember">Keep me logged in</label>
 					            </fieldset>
 				            </td>
-				            <td id="table-actions">
+				            <td class="table-actions">
 					            <fieldset id="action-login">
 					                <input type="submit" class="submit" value="Here we go!">
 					            </fieldset>
@@ -36,15 +36,28 @@
 	            </table>
 	        </g:form>
 	        <g:form class="register" action="register" method="post">
-                <h1>Wanna enjoy learning? <strong>Join us!</strong></h1>
+                <h1>Wanna enjoy learning? <strong>Join us!</strong>*</h1>
 	            <fieldset id="fields">
 	                <input class="useremail" type="email" name="email" placeholder="Enter you email address." required>
 	                <input class="password" type="password" name="password1" placeholder="Enter you password." required>
 	                <input class="password" type="password"name="password2" placeholder="Re-enter you password." required>
 	            </fieldset>
-	            <fieldset id="action-signup">
-	                <input type="submit" class="submit" value="Sign me up">
-	            </fieldset>
+	            <table>
+                    <tbody>
+                        <tr>
+                            <td class="table-options">
+                                <fieldset id="informations">
+                                    <span><i>* Only as a student</i></span>
+                                </fieldset>
+                            </td>
+                            <td class="table-actions">
+                                <fieldset id="action-signup">
+                                    <input type="submit" class="submit" value="Sign me up">
+                                </fieldset>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 	        </g:form>
 	        <div id="slideshow"> <!-- http://tutorialzine.com/2010/09/html5-canvas-slideshow-jquery/ -->
                 <ul>
