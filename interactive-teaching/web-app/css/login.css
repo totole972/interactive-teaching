@@ -141,11 +141,7 @@ body {
           0 3px 0 #fff,
           0 4px 0 rgba(0, 0, 0, .2),
           0 6px 0 #fff,  
-          0 7px 0 rgba(0, 0, 0, .2);
-          
-    -moz-box-shadow: 0 0 22px #111;
-    -webkit-box-shadow: 0 0 22px #111;
-    box-shadow: 0 0 22px #111;
+          0 7px 0 rgba(0, 0, 0, .2);   
 }
 
 .login:before {
