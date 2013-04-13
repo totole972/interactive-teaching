@@ -31,7 +31,7 @@ body {
 #slideshow {
     background-color: #F5F5F5;
     border: 3px solid #FFFFFF;
-    height: 410px;
+    height: 495px;
     position: absolute;
     width: 640px;
     margin-top: 30px;
@@ -47,7 +47,7 @@ body {
 #slideshow ul {
 	padding: 0;
 	margin: 0;
-    height: 410px;
+    height: 495px;
     list-style: none outside none;
     overflow: hidden;
     position: absolute;

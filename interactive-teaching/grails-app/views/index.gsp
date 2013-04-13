@@ -76,10 +76,10 @@
 	        <!-- http://tutorialzine.com/2010/09/html5-canvas-slideshow-jquery/ -->
 	        <div id="slideshow">
                 <ul>
-                    <!-- Required size: 640x410 -->
-                    <li><img src="${resource(dir: 'images/slides', file: 'sample_1.jpg')}" width="640" height="410" alt= "Sample 1"/>
-                    <li><img src="${resource(dir: 'images/slides', file: 'sample_2.jpg')}" width="640" height="410" alt= "Sample 2"/>
-                    <li><img src="${resource(dir: 'images/slides', file: 'sample_3.jpg')}" width="640" height="410" alt= "Sample 3"/>
+                    <!-- Required size: 640x495 -->
+                    <li><img src="${resource(dir: 'images/slides', file: 'sample_1.jpg')}" width="640" height="495" alt= "Sample 1"/>
+                    <li><img src="${resource(dir: 'images/slides', file: 'sample_2.jpg')}" width="640" height="495" alt= "Sample 2"/>
+                    <li><img src="${resource(dir: 'images/slides', file: 'sample_3.jpg')}" width="640" height="495" alt= "Sample 3"/>
                 </ul>
                 <span class="arrow previous"></span>
                 <span class="arrow next"></span>
