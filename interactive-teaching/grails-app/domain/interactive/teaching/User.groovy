@@ -4,7 +4,7 @@ class User {
     
     String email
     String password
-    //String password2
+    String password2
     String firstName
     String lastName
     
@@ -14,12 +14,10 @@ class User {
 
     static constraints = {
         email blank: false, unique: true, email: true
-        password blank: false, password: true
-        /*password blank: false, nullable: false, size: 5..15, validator: {password, obj ->
-            def password2 = obj.properties['password2']
-            if (password2 == null) return true // skip matching password validation (only important when setting/resetting pass)
-            password2 = password ? true : ['invalid.matchingpasswords']
-        }*/
+        password blank: false, password: true, size: 5..20, validator: { val, obj ->
+            obj.password2 != null && val != obj.password2 ? 'dontmatch' : true
+        }
+        password2 bindable: true
         firstName blank: false
         lastName blank: false
     }
