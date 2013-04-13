@@ -1,4 +1,4 @@
-<div class="user ${hasErrors(bean: userInstance, field: 'email', 'error')}">
+<div class="user">
     <g:field type="email" name="email" placeholder="${message(code: 'app.form.email')}" required="" value="${userInstance?.email}"/>
 </div>
 

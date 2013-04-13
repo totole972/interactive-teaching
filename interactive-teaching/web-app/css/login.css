@@ -244,10 +244,6 @@ fieldset {
     background-position: 8px -60px !important;
 }
 
-.error input {
-    color: #cc0000;
-}
-
 #fields input:focus {
     background-color: #fff;
     border-color: #e8c291;

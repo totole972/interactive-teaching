@@ -1,12 +1,12 @@
-<div class="user ${hasErrors(bean: studentInstance, field: 'firstName', 'error')}">
+<div class="user">
     <g:field type="text" name="firstName" placeholder="${message(code: 'app.form.firstName')}" required="" value="${studentInstance?.firstName}"/>
 </div>
 
-<div class="user ${hasErrors(bean: studentInstance, field: 'lastName', 'error')}">
+<div class="user">
     <g:field type="text" name="lastName" placeholder="${message(code: 'app.form.lastName')}" required="" value="${studentInstance?.lastName}"/>
 </div>
 
-<div class="user ${hasErrors(bean: studentInstance, field: 'email', 'error')}">
+<div class="user">
     <g:field type="email" name="email" placeholder="${message(code: 'app.form.email')}" required="" value="${studentInstance?.email}"/>
 </div>
 
