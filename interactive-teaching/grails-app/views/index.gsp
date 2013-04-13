@@ -3,21 +3,28 @@
     <head>
         <title><g:message code="app.title"/></title>
         <link rel="stylesheet" href="${resource(dir: 'css', file: 'login.css')}" type="text/css">
+        <link rel="stylesheet" href="${resource(dir: 'css', file: 'messages.css')}" type="text/css">
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
         <script type="text/javascript" src="${resource(dir: 'js', file: 'script.js')}"></script>
     </head>
     
     <body>
-        <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
-        </g:if>
-        <g:hasErrors bean="${studentInstance}">
-	        <g:eachError bean="${studentInstance}" var="error">
-	            <div class="message">
-                    <g:message error="${error}"/>
+        <div id="notif">
+	        <g:if test="${flash.message}">
+	            <div class="info">
+	                <h4><g:message code="messages.info"/></h4>
+	                <p>${flash.message}</p>
 	            </div>
-	        </g:eachError>
-        </g:hasErrors>
+	        </g:if>
+	        <g:hasErrors bean="${studentInstance}">
+	            <div class="error">
+	                <h4><g:message code="messages.error"/></h4>
+	                <g:eachError bean="${studentInstance}" var="error">
+	                    <p><g:message error="${error}"/></p>
+	                </g:eachError>
+	            </div>
+	        </g:hasErrors>
+	    </div>
         <div id="container">
             <!-- http://www.red-team-design.com/slick-login-form-with-html5-css3 -->
             <g:form class="login" controller="user" action="authenticate" method="post">
