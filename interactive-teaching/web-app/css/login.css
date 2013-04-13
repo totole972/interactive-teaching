@@ -17,9 +17,9 @@ body {
 /* FRONT CONTAINER */
 
 #container {
-	height: 408px;
+	height: 495px;
 	width: 980px;
-	margin: -234px 0 0 -520px;
+	margin: -278px 0 0 -520px;
 	padding: 30px;
 	position: absolute;
 	top: 50%;
@@ -168,7 +168,7 @@ body {
     background-image: -ms-linear-gradient(top, #fff, #eee);
     background-image: -o-linear-gradient(top, #fff, #eee);
     background-image: linear-gradient(top, #fff, #eee);  
-    height: 196px;
+    height: 283px;
     width: 280px;
     margin-top: 30px;
     padding: 15px;
@@ -236,12 +236,16 @@ fieldset {
     box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
 }
 
-.useremail {
+.user input {
     background-position: 8px -8px !important;
 }
 
-.password {
+.password input {
     background-position: 8px -60px !important;
+}
+
+.error input {
+    color: #cc0000;
 }
 
 #fields input:focus {
