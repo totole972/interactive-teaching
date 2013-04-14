@@ -4,7 +4,8 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class QuestionController {
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    def scaffold = Question
+    /*static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
         redirect(action: "list", params: params)
@@ -98,5 +99,5 @@ class QuestionController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'question.label', default: 'Question'), id])
             redirect(action: "show", id: id)
         }
-    }
+    } */
 }
