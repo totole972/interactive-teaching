@@ -5,6 +5,26 @@ import org.springframework.dao.DataIntegrityViolationException
 class QuestionController {
 
     def scaffold = Question
+    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+
+    def multiplesave()
+    {
+        System.out.println(params)
+        Teacher teach= Teacher.findById(params["idprof"])
+        Course course= Course.findById(params["idcours"])
+        def labels = params["label"]
+        labels.each {saveL(teach,course,"${it}")}
+        def adr = '/course/show/'+params["idcours"]
+        redirect(uri: adr )
+    }
+
+    def saveL(teacher,course,label)
+    {
+           def q = new Question(label : label, teacher: teacher)
+            q.save()
+           def cq= new Cours_Question(cours: course, question: q)
+            cq.save()
+    }
     /*static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
