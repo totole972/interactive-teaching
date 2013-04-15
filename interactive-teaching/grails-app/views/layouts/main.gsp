@@ -14,28 +14,51 @@
         <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
         <link rel="stylesheet" href="${resource(dir: 'css', file: 'global.css')}" type="text/css">
         <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
-        <link rel="stylesheet" href="${resource(dir: 'css', file: 'messages.css')}" type="text/css">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <!-- jQuery noty plugin -->
+        <script type="text/javascript" src="${resource(dir: 'js/noty', file: 'jquery.noty.js')}"></script>
+        <script type="text/javascript" src="${resource(dir: 'js/noty/layouts', file: 'bottomRight.js')}"></script>
+        <script type="text/javascript" src="${resource(dir: 'js/noty/themes', file: 'default.js')}"></script>
+        <script type="text/javascript">
+        function generate(text, type) {
+            var n = noty({
+                text: text,
+                type: type,
+                dismissQueue: true,
+                layout: 'bottomRight',
+                theme: 'defaultTheme'
+            });
+            console.log(type + ' - ' + n.options.id);
+            return n;
+        }
+        </script>
         <g:layoutHead/>
         <r:layoutResources/>
     </head>
     <body>
+        <g:if test="${flash.message}">
+            <script type="text/javascript">
+            $(document).ready(function() {
+                var error = generate('${flash.message}', 'information');
+                setTimeout(function() {
+                    $.noty.close(error.options.id);
+                }, 10000);
+            });
+            </script>
+        </g:if>
+        <g:hasErrors bean="${studentInstance}">
+            <g:eachError bean="${studentInstance}" var="error">
+                <script type="text/javascript">
+                $(document).ready(function() {
+                    var error = generate('<g:message error="${error}"/>', 'error');
+                    setTimeout(function() {
+                        $.noty.close(error.options.id);
+                    }, 10000);
+                });
+                </script>
+            </g:eachError>
+        </g:hasErrors>
         <div id="header">
-            <div id="notif">
-                <g:if test="${flash.message}">
-	                <div class="info">
-	                    <h4><g:message code="messages.info"/></h4>
-	                    <p>${flash.message}</p>
-	                </div>
-	            </g:if>
-	            <g:hasErrors bean="${userInstance}">
-	                <div class="error">
-	                    <h4><g:message code="messages.error"/></h4>
-	                    <g:eachError bean="${userInstance}" var="error">
-	                        <p><g:message error="${error}"/></p>
-	                    </g:eachError>
-	                </div>
-	            </g:hasErrors>
-            </div>
             <div id="menu">
                 <ul>
                     <li class='left'><a href='#'><span>Home</span></a></li>
