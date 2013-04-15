@@ -1,0 +1,15 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    font: 12px 'Lucida Sans Unicode', 'Trebuchet MS', Arial, Helvetica;    
+    margin: 0;
+    background-color: #e9c2a6;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#fee8d6), to(#e9c2a6));
+    background-image: -webkit-linear-gradient(top, #fee8d6, #e9c2a6);
+    background-image: -moz-linear-gradient(top, #fee8d6, #e9c2a6);
+    background-image: -ms-linear-gradient(top, #fee8d6, #e9c2a6);
+    background-image: -o-linear-gradient(top, #fee8d6, #e9c2a6);
+    background-image: linear-gradient(top, #fee8d6, #e9c2a6);
+}
