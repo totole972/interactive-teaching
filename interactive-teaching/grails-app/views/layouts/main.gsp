@@ -8,9 +8,9 @@
         <div id="header">
             <div id="menu">
                 <ul>
-                    <li class='left'><a href='#'><span>Home</span></a></li>
-                    <li class='left'><a href='#'><span>Courses</span></a></li>
-                    <li class='right'><g:link controller="user" action="logout"><span>Logout</span></g:link></li>
+                    <li class='left'><a href='#'><span><g:message code="menu.home"/></span></a></li>
+                    <li class='left'><a href='#'><span><g:message code="menu.courses"/></span></a></li>
+                    <li class='right'><g:link controller="user" action="logout"><span><g:message code="menu.logout"/></span></g:link></li>
                 </ul>
             </div>
         </div>
@@ -19,7 +19,7 @@
             <ul>
                 <g:set var="date" value="${new Date()}" scope="session" />
                 <li class='left'><span><g:formatDate date="${session.date}"/></span></li>
-                <li class='right'><span>Logged as ${session.user}</span></li>
+                <li class='right'><span><g:message code="footer.session"/> ${session.user}</span></li>
             </ul>
         </div>
         <div id="spinner" class="spinner" style="display:none;">
