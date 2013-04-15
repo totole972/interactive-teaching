@@ -2,7 +2,7 @@ package interactive.teaching
 
 class Student extends User {
 
-    static hasMany = [classes:Enrollment]
+    static hasMany = [answers:Answer]
     
     def answerQuestion(Question question) {
         

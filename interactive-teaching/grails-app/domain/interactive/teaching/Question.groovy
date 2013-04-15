@@ -3,11 +3,16 @@ package interactive.teaching
 class Question {
 
     String label
-    //Teacher creator
     boolean isOpen
     boolean isVisible
     boolean studentAnswers
     static hasMany = [answers:Answer]
+    static constraints = {
+        label blank:false, nullable:false
+        isOpen default : false
+        studentAnswers default : true
+        isVisible  default : false
+    }
 
     def addAnswer(Answer answer) {
 
@@ -37,12 +42,5 @@ class Question {
     def blockStudents() {
 
     }
-    
-    static constraints = {
-        label blank:false, nullable:false
-        //creator nullable: false
-        isOpen default : false
-        studentAnswers default : true
-        isVisible  default : false
-    }
+
 }

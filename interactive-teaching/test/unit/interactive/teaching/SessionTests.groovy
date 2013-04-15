@@ -3,14 +3,15 @@ package interactive.teaching
 
 
 import grails.test.mixin.*
+import org.junit.*
 
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
-@TestFor(User)
-class UserTests {
+@TestFor(Session)
+class SessionTests {
 
     void testSomething() {
-       fail "Implement me"
+        fail "Implement me"
     }
 }
