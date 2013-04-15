@@ -1,4 +1,5 @@
 import interactive.teaching.Course
+import interactive.teaching.Enrollment
 import interactive.teaching.Student
 import interactive.teaching.Teacher
 
@@ -31,6 +32,12 @@ class BootStrap {
            admin: prof1,
         )
         cours1.save()
+
+
+        def en = new Enrollment(course: cours1, student: student1)
+        en.save()
+        en = new Enrollment(course: cours1, student: student2)
+        en.save()
     }
     
     def destroy = {
