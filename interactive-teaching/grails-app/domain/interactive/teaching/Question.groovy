@@ -6,12 +6,14 @@ class Question {
     boolean isOpen
     boolean isVisible
     boolean studentAnswers
+    Teacher teacher
     static hasMany = [answers:Answer]
     static constraints = {
         label blank:false, nullable:false
         isOpen default : false
         studentAnswers default : true
         isVisible  default : false
+        teacher blank:false, nullable: false
     }
 
     def addAnswer(Answer answer) {
