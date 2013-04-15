@@ -70,7 +70,9 @@
         <div id="container"><g:layoutBody/></div>
         <div id="footer">
             <ul>
-                <li class='right'><span>Logged as [...]</span></li>
+                <g:set var="date" value="${new Date()}" scope="session" />
+                <li class='left'><span><g:formatDate date="${session.date}"/></span></li>
+                <li class='right'><span>Logged as ${session.user}</span></li>
             </ul>
         </div>
         <div id="spinner" class="spinner" style="display:none;">
