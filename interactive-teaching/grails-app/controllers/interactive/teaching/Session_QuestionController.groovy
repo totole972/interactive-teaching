@@ -4,7 +4,7 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class Session_QuestionController {
 
-    def scaffold = Session_QuestionController
+    def scaffold = Session_Question
     /*static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
