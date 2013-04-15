@@ -1,4 +1,6 @@
+import interactive.teaching.Course
 import interactive.teaching.Student
+import interactive.teaching.Teacher
 
 class BootStrap {
 
@@ -16,6 +18,19 @@ class BootStrap {
             firstName: "Kevin",
             lastName: "Anatole")
         student2.save()
+
+        def prof1 = new Teacher(
+                email: "frederic.migeon@irit.fr",
+                password: "lolol",
+                firstName: "Frederic",
+                lastName: "Migeon")
+        prof1.save()
+
+        def cours1  = new Course(
+           label: "The Great Migeon Show",
+           admin: prof1,
+        )
+        cours1.save()
     }
     
     def destroy = {
