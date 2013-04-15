@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="${resource(dir: 'css', file: 'index.css')}" type="text/css">
         <link rel="stylesheet" href="${resource(dir: 'css', file: 'messages.css')}" type="text/css">
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        <script type="text/javascript" src="${resource(dir: 'js', file: 'slideshow.js')}"></script>
     </head>
     
     <body>
