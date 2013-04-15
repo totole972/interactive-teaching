@@ -4,7 +4,7 @@ class Course {
 
     String label
     Teacher admin
-    static hasMany = [students:Enrollment, questions:Question]
+    static hasMany = [students:Enrollment, questions:Cours_Question]
     
     String toString() {
         label
