@@ -14,7 +14,7 @@ class StudentController {
             session.user = student
             flash.message = message(code: 'app.auth.accept', args: [student.firstName, student.lastName]) +
                 message(code: 'app.reg.accept')
-            redirect(uri: '/')
+            redirect(uri: '/student/course/list')
         }
     }
 }

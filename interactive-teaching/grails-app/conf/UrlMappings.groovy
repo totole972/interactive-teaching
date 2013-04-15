@@ -9,5 +9,7 @@ class UrlMappings {
 
 		"/"(view:'/index')
 		"500"(view:'/error')
+        "/student/course/list"(controller:'course', action:'list')
+        "/teacher/course/list"(controller:'course', action:'list')
 	}
 }
