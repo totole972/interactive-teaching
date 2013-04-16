@@ -53,7 +53,6 @@ class BootStrap {
                 def user = new User(
                     email: email,
                     password: 'password',
-                    enabled: true,
                     firstName: userAttrs.firstName,
                     lastName: userAttrs.lastName)
 
