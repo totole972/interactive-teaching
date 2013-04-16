@@ -1,6 +1,6 @@
 package interactive.teaching
 
-class Teacher extends User {
+class Teacher extends UserTemp {
 
     static hasMany = [classes:Course]
     

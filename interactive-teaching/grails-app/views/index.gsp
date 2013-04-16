@@ -7,9 +7,9 @@
     <body>
         <div id="container">
             <!-- http://www.red-team-design.com/slick-login-form-with-html5-css3 -->
-            <g:form class="login" controller="user" action="authenticate" method="post">
+            <g:form class="login" controller="userTemp" action="authenticate" method="post">
 	            <fieldset id="fields">
-	                <g:render template="/user/form"/>
+	                <g:render template="/userTemp/form"/>
 	            </fieldset>
 	            <table>
                     <tbody>

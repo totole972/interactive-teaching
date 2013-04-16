@@ -1,6 +1,6 @@
 package interactive.teaching
 
-class User {
+class UserTemp {
     
     String email
     String password

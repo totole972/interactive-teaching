@@ -10,7 +10,7 @@
                 <ul>
                     <li class='left'><a href='#'><span><g:message code="menu.home"/></span></a></li>
                     <li class='left'><a href='#'><span><g:message code="menu.courses"/></span></a></li>
-                    <li class='right'><g:link controller="user" action="logout"><span><g:message code="menu.logout"/></span></g:link></li>
+                    <li class='right'><g:link controller="userTemp" action="logout"><span><g:message code="menu.logout"/></span></g:link></li>
                 </ul>
             </div>
         </div>

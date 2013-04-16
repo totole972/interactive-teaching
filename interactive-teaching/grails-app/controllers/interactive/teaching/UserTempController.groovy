@@ -1,17 +1,17 @@
 package interactive.teaching
 
-class UserController {
+class UserTempController {
     
     static allowedMethods = [authenticate: "POST"]
     
     def authenticate = {
-        def user = User.findByEmailAndPassword(params.email, params.password)
+        def user = UserTemp.findByEmailAndPassword(params.email, params.password)
         if (user) {
             session.user = user
             flash.message = message(code: 'app.auth.accept', args: [user.firstName, user.lastName])
             redirect(uri: '/' + user.class.simpleName.toLowerCase() + '/course/list')
         } else {
-            user = User.findByEmail(params.email)
+            user = UserTemp.findByEmail(params.email)
             if (user) {
                 flash.message = message(code: 'app.auth.reject.generic')
                 render(view: "../index", model: [userInstance: user])
