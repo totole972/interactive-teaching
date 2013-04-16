@@ -4,12 +4,17 @@ class User {
 
 	transient springSecurityService
 
+    // Security user fields
 	String email
 	String password
 	boolean enabled
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
+    
+    // Custom user fields
+    String firstName
+    String lastName
 
 	static constraints = {
 		email blank: false, unique: true, email: true

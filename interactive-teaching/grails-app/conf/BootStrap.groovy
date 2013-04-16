@@ -6,7 +6,6 @@ import interactive.teaching.UserRole
 import grails.util.Environment
 
 class BootStrap {
-
     def init = { servletContext ->
         switch (Environment.current) {
             case Environment.DEVELOPMENT:
@@ -43,16 +42,21 @@ class BootStrap {
         def teacherRole = new Role(authority: "ROLE_TEACHER").save()
         
         def samples = [
-            'damien.arondel@free.fr' : [role: studentRole],
-            'kevinanatole@yahoo.fr' : [role: studentRole],
-            'frederic.migeon@irit.fr' : [role: teacherRole],
-            'franck.silvestre@irit.fr' : [role: teacherRole]
+            'damien.arondel@free.fr' : [role: studentRole, firstName: 'Damien', lastName: 'Arondel'],
+            'kevinanatole@yahoo.fr' : [role: studentRole, firstName: 'Kevin', lastName: 'Anatole'],
+            'frederic.migeon@irit.fr' : [role: teacherRole, firstName: 'Frederic', lastName: 'Migeon'],
+            'franck.silvestre@irit.fr' : [role: teacherRole, firstName: 'Franck', lastName: 'Silvestre']
         ]
         
         if (!User.list()) {
             samples.each { email, userAttrs ->
-                def user = new User(email: email, password: 'password', enabled: true)
-                
+                def user = new User(
+                    email: email,
+                    password: 'password',
+                    enabled: true,
+                    firstName: userAttrs.firstName,
+                    lastName: userAttrs.lastName)
+
                 if (user.validate()) {
                     println "Creating user ${email}..."
                     user.save(flush: true)
