@@ -13,7 +13,7 @@
             <form class="login" action="${request.contextPath + config.apf.filterProcessesUrl}" method="post">
 	            <fieldset id="fields">
 	                <div class="user">
-                        <g:field type="text" name="j_username" placeholder="${message(code: 'app.form.email')}" required=""/>
+                        <g:field type="email" name="j_username" placeholder="${message(code: 'app.form.email')}" required=""/>
                     </div>
                     <div class="password">
                         <g:field type="password" name="j_password" placeholder="${message(code: 'app.form.password.first')}" required=""/>

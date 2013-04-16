@@ -43,22 +43,22 @@ class BootStrap {
         def teacherRole = new Role(authority: "ROLE_TEACHER").save()
         
         def samples = [
-            'damien_arondel' : [role: studentRole],
-            'kevin_anatole' : [role: studentRole],
-            'frederic_migeon' : [role: teacherRole],
-            'franck_silvestre' : [role: teacherRole]
+            'damien.arondel@free.fr' : [role: studentRole],
+            'kevinanatole@yahoo.fr' : [role: studentRole],
+            'frederic.migeon@irit.fr' : [role: teacherRole],
+            'franck.silvestre@irit.fr' : [role: teacherRole]
         ]
         
         if (!User.list()) {
-            samples.each { username, userAttrs ->
-                def user = new User(username: username, password: 'password', enabled: true)
+            samples.each { email, userAttrs ->
+                def user = new User(email: email, password: 'password', enabled: true)
                 
                 if (user.validate()) {
-                    println "Creating user ${username}..."
+                    println "Creating user ${email}..."
                     user.save(flush: true)
                     UserRole.create(user, userAttrs.role)
                 } else {
-                    println "Error in account bootstrap for ${username}!"
+                    println "Error in account bootstrap for ${email}!"
                     user.errors.each { err ->
                         println err
                     }

@@ -94,6 +94,7 @@ log4j = {
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'interactive.teaching.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'interactive.teaching.UserRole'
 grails.plugins.springsecurity.authority.className = 'interactive.teaching.Role'
+grails.plugins.springsecurity.userLookup.usernamePropertyName = 'email'
 grails.plugins.springsecurity.auth.loginFormUrl = '/'
 grails.plugins.springsecurity.failureHandler.defaultFailureUrl = '/'
 grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/course/list'
