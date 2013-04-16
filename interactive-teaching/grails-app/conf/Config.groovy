@@ -94,3 +94,8 @@ log4j = {
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'interactive.teaching.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'interactive.teaching.UserRole'
 grails.plugins.springsecurity.authority.className = 'interactive.teaching.Role'
+grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/course/list'
+grails.plugins.springsecurity.securityConfigType = "InterceptUrlMap"
+grails.plugins.springsecurity.interceptUrlMap = [
+    '/course/list': [ 'ROLE_TEACHER' ]
+]
