@@ -1,27 +1,51 @@
 package interactive.teaching
 
 class User {
+
+	transient springSecurityService
+
+    // Security user fields
+	String email
+	String password
+	boolean enabled = true
+	boolean accountExpired
+	boolean accountLocked
+	boolean passwordExpired
     
-    String email
-    String password
-    String password2
+    // Custom user fields
     String firstName
     String lastName
+
+	static constraints = {
+		email blank: false, unique: true, email: true
+		password blank: false, password: true
+        firstName blank: false
+        lastName blank: false
+	}
+
+	static mapping = {
+		password column: '`password`'
+	}
+
+	Set<Role> getAuthorities() {
+		UserRole.findAllByUser(this).collect { it.role } as Set
+	}
+
+	def beforeInsert() {
+		encodePassword()
+	}
+
+	def beforeUpdate() {
+		if (isDirty('password')) {
+			encodePassword()
+		}
+	}
+
+	protected void encodePassword() {
+		password = springSecurityService.encodePassword(password)
+	}
     
     String toString() {
         firstName + " " + lastName
     }
-
-    static constraints = {
-        email blank: false, unique: true, email: true
-        password blank: false, password: true, size: 5..20, validator: { val, obj ->
-            obj.password2 != null && val != obj.password2 ? 'dontmatch' : true
-        }
-        password2 bindable: true
-        firstName blank: false
-        lastName blank: false
-    }
-    
-    // will not be included in the database model or object relational mapping of GORM
-    static transients = ['password2']
 }

@@ -1,3 +1,6 @@
+<%@page import="org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils" %>
+<g:set var="config" value="${SpringSecurityUtils.securityConfig}"/>
+
 <html>
     <head>
         <meta name="layout" content="global">
@@ -7,33 +10,56 @@
     <body>
         <div id="container">
             <!-- http://www.red-team-design.com/slick-login-form-with-html5-css3 -->
-            <g:form class="login" controller="user" action="authenticate" method="post">
+            <form class="login" action="${request.contextPath + config.apf.filterProcessesUrl}" method="post">
 	            <fieldset id="fields">
-	                <g:render template="/user/form"/>
+	                <div class="user">
+                        <g:field type="email" name="j_username" placeholder="${message(code: 'app.form.email')}" required=""/>
+                    </div>
+                    <div class="password">
+                        <g:field type="password" name="j_password" placeholder="${message(code: 'app.form.password.first')}" required=""/>
+                    </div>
 	            </fieldset>
 	            <table>
                     <tbody>
                         <tr>
                             <td class="table-options">
 					            <fieldset id="options">
-					                <input id="remember" type="checkbox" name="remember">
+					                <input id="remember" type="checkbox" name="${config.rememberMe.parameter}"<g:if test='${hasCookie}'> checked='checked'</g:if>/>
 					                <label for="remember"><g:message code="app.login.remember"/></label>
 					            </fieldset>
 				            </td>
 				            <td class="table-actions">
 					            <fieldset id="action-login">
-					                <input type="submit" class="submit" value="${message(code: 'app.login.submit')}">
+                                    <g:submitButton class="submit" name="login" value="${message(code: 'app.login.submit')}"/>
 					            </fieldset>
 				            </td>
 			            </tr>
 		            </tbody>
 	            </table>
-	        </g:form>
+	        </form>
 	        
-	        <g:form class="register" controller="student" action="save" method="post">
+	        <g:form class="register" controller="user" action="register" method="post">
                 <h1><g:message code="app.register.desc.first"/> <strong><g:message code="app.register.desc.second"/></strong>*</h1>
 	            <fieldset id="fields">
-	                <g:render template="/student/form"/>
+	                <div class="user">
+					    <g:field type="text" name="firstName" placeholder="${message(code: 'app.form.firstName')}" required="" value="${userInstance?.firstName}"/>
+					</div>
+					
+					<div class="user">
+					    <g:field type="text" name="lastName" placeholder="${message(code: 'app.form.lastName')}" required="" value="${userInstance?.lastName}"/>
+					</div>
+					
+					<div class="user">
+					    <g:field type="email" name="email" placeholder="${message(code: 'app.form.email')}" required="" value="${userInstance?.email}"/>
+					</div>
+					
+					<div class="password">
+					    <g:field type="password" name="password" required="" placeholder="${message(code: 'app.form.password.first')}"/>
+					</div>
+					
+					<div class="password">
+					    <g:field type="password" name="passwordConfirm" required="" placeholder="${message(code: 'app.form.password.second')}"/>
+					</div>
 	            </fieldset>
 	            <table>
                     <tbody>
@@ -45,7 +71,7 @@
                             </td>
                             <td class="table-actions">
                                 <fieldset id="action-signup">
-                                    <input type="submit" class="submit" value="${message(code: 'app.register.submit')}">
+                                    <g:submitButton class="submit" name="register" value="${message(code: 'app.register.submit')}"/>
                                 </fieldset>
                             </td>
                         </tr>

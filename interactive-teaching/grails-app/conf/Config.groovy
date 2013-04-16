@@ -89,3 +89,15 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'interactive.teaching.User'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'interactive.teaching.UserRole'
+grails.plugins.springsecurity.authority.className = 'interactive.teaching.Role'
+grails.plugins.springsecurity.userLookup.usernamePropertyName = 'email'
+grails.plugins.springsecurity.auth.loginFormUrl = '/'
+grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/course/list'
+grails.plugins.springsecurity.securityConfigType = "InterceptUrlMap"
+grails.plugins.springsecurity.interceptUrlMap = [
+    '/course/list': [ 'IS_AUTHENTICATED_REMEMBERED' ]
+]
