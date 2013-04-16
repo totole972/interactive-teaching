@@ -45,8 +45,8 @@
             });
             </script>
         </g:if>
-        <g:hasErrors bean="${studentInstance}">
-            <g:eachError bean="${studentInstance}" var="error">
+        <g:hasErrors>
+            <g:eachError var="error">
                 <script type="text/javascript">
                 $(document).ready(function() {
                     var error = generate('<g:message error="${error}"/>', 'error');

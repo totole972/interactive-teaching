@@ -38,10 +38,10 @@
 	            </table>
 	        </form>
 	        
-	        <g:form class="register" controller="student" action="save" method="post">
+	        <g:form class="register" controller="user" action="register" method="post">
                 <h1><g:message code="app.register.desc.first"/> <strong><g:message code="app.register.desc.second"/></strong>*</h1>
 	            <fieldset id="fields">
-	                <g:render template="/student/form"/>
+	                <g:render template="/user/form"/>
 	            </fieldset>
 	            <table>
                     <tbody>
@@ -53,7 +53,7 @@
                             </td>
                             <td class="table-actions">
                                 <fieldset id="action-signup">
-                                    <input type="submit" class="submit" value="${message(code: 'app.register.submit')}">
+                                    <g:submitButton class="submit" name="register" value="${message(code: 'app.register.submit')}"/>
                                 </fieldset>
                             </td>
                         </tr>
