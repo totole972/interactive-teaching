@@ -21,18 +21,6 @@ class BootStrap {
                 break;
         }
     }
-
-        /*def cours1  = new Course(
-           label: "The Great Migeon Show",
-           admin: prof1,
-        )
-        cours1.save()
-
-
-        def en = new Enrollment(course: cours1, student: student1)
-        en.save()
-        en = new Enrollment(course: cours1, student: student2)
-        en.save()*/
     
     def destroy = {
     }
@@ -69,4 +57,16 @@ class BootStrap {
             }
         }
     }
+    
+    /*def cours1  = new Course(
+     label: "The Great Migeon Show",
+     admin: prof1,
+  )
+  cours1.save()
+
+
+  def en = new Enrollment(course: cours1, student: student1)
+  en.save()
+  en = new Enrollment(course: cours1, student: student2)
+  en.save()*/
 }

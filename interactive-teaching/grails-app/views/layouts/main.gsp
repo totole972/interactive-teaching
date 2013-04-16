@@ -10,16 +10,16 @@
                 <ul>
                     <li class='left'><a href='#'><span><g:message code="menu.home"/></span></a></li>
                     <li class='left'><a href='#'><span><g:message code="menu.courses"/></span></a></li>
-                    <li class='right'><g:link controller="user" action="logout"><span><g:message code="menu.logout"/></span></g:link></li>
+                    <li class='right'><g:link controller="logout"><span><g:message code="menu.logout"/></span></g:link></li>
                 </ul>
             </div>
         </div>
         <div id="container"><g:layoutBody/></div>
         <div id="footer">
             <ul>
-                <g:set var="date" value="${new Date()}" scope="session" />
-                <li class='left'><span><g:formatDate date="${session.date}"/></span></li>
-                <li class='right'><span><g:message code="footer.session"/> ${session.user}</span></li>
+                <g:set var="date" value="${new Date()}"/>
+                <li class='left'><span><g:formatDate date="${date}"/></span></li>
+                <li class='right'><span><g:message code="footer.session"/> <i><sec:username/></i></span></li>
             </ul>
         </div>
         <div id="spinner" class="spinner" style="display:none;">

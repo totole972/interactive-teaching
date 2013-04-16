@@ -14,7 +14,7 @@ class UserController {
     def register = { UserRegistrationCommand urc ->
         if (!params.register) return
         
-        def role = Role.findByAuthority("ROLE_STUDENT") ?: new Role(authority: "ROLE_STUDENT").save()
+        def role = Role.findByAuthority("ROLE_TEACHER") ?: new Role(authority: "ROLE_STUDENT").save()
         
         if (!urc.hasErrors()) {
             def props = urc.properties
@@ -33,7 +33,7 @@ class UserController {
             def auth = new AuthToken(params.email, params.password)
             def authtoken = daoAuthenticationProvider.authenticate(auth)
             SCH.context.authentication = authtoken
-            redirect(uri: '/')
+            redirect(controller: 'course', action: 'list')
         } else {
             render(view: "../index", model: [userInstance: urc])
         }

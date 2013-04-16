@@ -96,9 +96,8 @@ grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'interactive.t
 grails.plugins.springsecurity.authority.className = 'interactive.teaching.Role'
 grails.plugins.springsecurity.userLookup.usernamePropertyName = 'email'
 grails.plugins.springsecurity.auth.loginFormUrl = '/'
-grails.plugins.springsecurity.failureHandler.defaultFailureUrl = '/'
 grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/course/list'
 grails.plugins.springsecurity.securityConfigType = "InterceptUrlMap"
 grails.plugins.springsecurity.interceptUrlMap = [
-    '/course/list': [ 'ROLE_TEACHER' ]
+    '/course/list': [ 'IS_AUTHENTICATED_REMEMBERED' ]
 ]
