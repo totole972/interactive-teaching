@@ -1,3 +1,6 @@
+<%@page import="org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils" %>
+<g:set var="config" value="${SpringSecurityUtils.securityConfig}"/>
+
 <html>
     <head>
         <meta name="layout" content="global">
@@ -7,28 +10,33 @@
     <body>
         <div id="container">
             <!-- http://www.red-team-design.com/slick-login-form-with-html5-css3 -->
-            <g:form class="login" controller="userTemp" action="authenticate" method="post">
+            <form class="login" action="${request.contextPath + config.apf.filterProcessesUrl}" method="post">
 	            <fieldset id="fields">
-	                <g:render template="/userTemp/form"/>
+	                <div class="user">
+                        <g:field type="text" name="j_username" placeholder="${message(code: 'app.form.email')}" required=""/>
+                    </div>
+                    <div class="password">
+                        <g:field type="password" name="j_password" placeholder="${message(code: 'app.form.password.first')}" required=""/>
+                    </div>
 	            </fieldset>
 	            <table>
                     <tbody>
                         <tr>
                             <td class="table-options">
 					            <fieldset id="options">
-					                <input id="remember" type="checkbox" name="remember">
+					                <input id="remember" type="checkbox" name="${config.rememberMe.parameter}"<g:if test='${hasCookie}'> checked='checked'</g:if>/>
 					                <label for="remember"><g:message code="app.login.remember"/></label>
 					            </fieldset>
 				            </td>
 				            <td class="table-actions">
 					            <fieldset id="action-login">
-					                <input type="submit" class="submit" value="${message(code: 'app.login.submit')}">
+                                    <g:submitButton class="submit" name="login" value="${message(code: 'app.login.submit')}"/>
 					            </fieldset>
 				            </td>
 			            </tr>
 		            </tbody>
 	            </table>
-	        </g:form>
+	        </form>
 	        
 	        <g:form class="register" controller="student" action="save" method="post">
                 <h1><g:message code="app.register.desc.first"/> <strong><g:message code="app.register.desc.second"/></strong>*</h1>
