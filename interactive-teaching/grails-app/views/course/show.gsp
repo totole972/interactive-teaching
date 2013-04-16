@@ -1,4 +1,4 @@
-<%@ page import="interactive.teaching.Course" %>
+<%@ page import="interactive.teaching.Teacher; interactive.teaching.Course" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +46,7 @@
             </ol>
         </g:if>
     </div>
-
+    <g:if test="${session.user instanceof Teacher}">
     <div style="float: right; width: 50%">
         <g:form controller="question" action="multiplesave" method="post">
             <g:hiddenField name="idprof" value="${session.user.id}"/>
@@ -63,6 +63,7 @@
             </fieldset>
         </g:form>
     </div>
+    </g:if>
 </div>
 <script type="text/javascript">
     function addquestion() {
