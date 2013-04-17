@@ -38,7 +38,7 @@
         <g:if test="${flash.message}">
             <script type="text/javascript">
             $(document).ready(function() {
-                var error = generate('${flash.message}', 'information');
+                var error = generate("${flash.message}", 'information');
                 setTimeout(function() {
                     $.noty.close(error.options.id);
                 }, 10000);
