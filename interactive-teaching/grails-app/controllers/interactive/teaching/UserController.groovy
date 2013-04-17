@@ -26,8 +26,7 @@ class UserController {
             
             UserRole.create user, role
             
-            flash.message = message(code: 'app.auth.accept', args: [user.firstName, user.lastName]) +
-                " " + message(code: 'app.reg.accept')
+            flash.message = message(code: 'app.reg.accept', args: [user.firstName, user.lastName])
             
             // Log the newly created user in
             def auth = new AuthToken(params.email, params.password)

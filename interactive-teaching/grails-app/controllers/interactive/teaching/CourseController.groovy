@@ -1,5 +1,7 @@
 package interactive.teaching
 
+import java.security.Principal;
+
 class CourseController {
     
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
@@ -16,10 +18,10 @@ class CourseController {
      */
     def index = {
         if (!springSecurityService.isLoggedIn()) {
-            flash.message = 'You must be logged in to get the most out of the application.'
+            flash.message = message(code: 'app.login.required')
             redirect(controller: 'login', action: 'auth')
         } else {
-            flash.message "Hello " + principal.username + "."
+            flash.message = message(code: 'app.login.logged', args: [principal.username])
             redirect(action: 'list')
         }
     }
