@@ -9,9 +9,11 @@ class BootStrap {
     def init = { servletContext ->
         switch (Environment.current) {
             case Environment.DEVELOPMENT:
+                createAdminUserIfRequired()
                 createTestingUsers()
                 break;
             case Environment.PRODUCTION:
+                createAdminUserIfRequired()
                 if (!Role.findByAuthority("ROLE_TEACHER")) {
                     def teacherRole = new Role(authority: "ROLE_TEACHER").save()
                 }
@@ -25,6 +27,26 @@ class BootStrap {
     def destroy = {
     }
     
+    void createAdminUserIfRequired() {
+        if (!User.findByEmail("admin@int-teaching.com")) {
+            println "Fresh Database. Creating ADMIN user..."
+            def user = new User(
+                email: "admin@int-teaching.com",
+                password: 'secret',
+                firstName: "Almighty",
+                lastName: "Admin").save()
+            
+            def role = Role.findByAuthority("ROLE_ADMIN")
+            if (!role) {
+                role =  new Role(authority: "ROLE_ADMIN").save()
+            }
+            
+            UserRole.create user, role
+        } else {
+            println "Existing ADMIN user, skipping creation..."
+        }
+    }
+    
     void createTestingUsers() {
         def studentRole = new Role(authority: "ROLE_STUDENT").save()
         def teacherRole = new Role(authority: "ROLE_TEACHER").save()
@@ -36,7 +58,7 @@ class BootStrap {
             'franck.silvestre@irit.fr' : [role: teacherRole, firstName: 'Franck', lastName: 'Silvestre']
         ]
         
-        if (!User.list()) {
+        if (User.list().size() == 1) {
             samples.each { email, userAttrs ->
                 def user = new User(
                     email: email,
