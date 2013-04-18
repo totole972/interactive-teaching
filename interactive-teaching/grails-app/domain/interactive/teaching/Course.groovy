@@ -4,7 +4,7 @@ class Course {
 
     String label
     Theme theme
-    static hasMany = [students:Enrollment, questions:Cours_Question]
+    static hasMany = [users:Enrollment, questions:Cours_Question]
     
     String toString() {
         label
@@ -14,7 +14,7 @@ class Course {
         
     }
     
-    def addStudent(Student student) {
+    def addUser(User user) {
         
     }
 

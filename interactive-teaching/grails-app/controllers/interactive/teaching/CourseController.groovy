@@ -25,4 +25,9 @@ class CourseController {
             redirect(action: 'list')
         }
     }
+    
+    def list = {
+        //User.courses
+        [courses: Course.list(params), courseCount: Course.count()]
+    }
 }

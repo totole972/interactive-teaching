@@ -15,6 +15,7 @@ class User {
     // Custom user fields
     String firstName
     String lastName
+    static hasMany = [courses:Enrollment]
 
 	static constraints = {
 		email blank: false, unique: true, email: true
@@ -23,6 +24,7 @@ class User {
         lastName blank: false
 	}
 
+    /****** ADDED BY GRAILS SPRING SECURITY ******/
 	static mapping = {
 		password column: '`password`'
 	}
@@ -45,6 +47,7 @@ class User {
 		password = springSecurityService.encodePassword(password)
 	}
     
+    /****** CUSTOM ADDITION ******/
     String toString() {
         firstName + " " + lastName
     }
