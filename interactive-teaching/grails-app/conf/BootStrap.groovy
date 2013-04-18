@@ -1,6 +1,8 @@
 import interactive.teaching.Course
 import interactive.teaching.Enrollment
 import interactive.teaching.Role
+import interactive.teaching.Student
+import interactive.teaching.Theme
 import interactive.teaching.User
 import interactive.teaching.UserRole
 import grails.util.Environment
@@ -11,6 +13,9 @@ class BootStrap {
             case Environment.DEVELOPMENT:
                 createAdminUserIfRequired()
                 createTestingUsers()
+                createThemes()
+                createCours()
+                createEnrollement()
                 break;
             case Environment.PRODUCTION:
                 createAdminUserIfRequired()
@@ -78,6 +83,76 @@ class BootStrap {
                 }
             }
         }
+    }
+
+    void createThemes()
+    {
+        def theme = new Theme(label: "Informatique")
+        theme.save()
+        theme= new Theme(label: "Biologie")
+        theme.save()
+    }
+
+    void createCours()
+    {
+
+        Theme info = Theme.findByLabel("Informatique")
+        Theme bio = Theme.findByLabel("Biologie")
+        def cours = new Course(label : "DCLL", theme: info )
+        cours.save()
+        cours = new Course(label : "IAWS", theme: info )
+        cours.save()
+        cours = new Course(label : "JEE", theme: info )
+        cours.save()
+        cours = new Course(label : "MA", theme: info )
+        cours.save()
+        cours = new Course(label : "MPI", theme: info )
+        cours.save()
+        cours = new Course(label : "OIM", theme: info )
+        cours.save()
+        cours = new Course(label : "CGE", theme: info )
+        cours.save()
+        cours = new Course(label : "Stage", theme: info )
+        cours.save()
+        cours = new Course(label : "TER", theme: info )
+        cours.save()
+        cours = new Course(label : "Biologie Moléculaire", theme: bio )
+        cours.save()
+        cours = new Course(label : "Génétique", theme: bio )
+        cours.save()
+    }
+
+    void createEnrollement()
+    {
+        Course cours1 = Course.findByLabel("OIM")
+        Course cours2 = Course.findByLabel("JEE")
+        Course cours3 = Course.findByLabel("IAWS")
+        Course cours4 = Course.findByLabel("TER")
+        Course cours5 = Course.findByLabel("Stage")
+        User student1 = User.findByLastName("Anatole")
+        User student2 = User.findByLastName("Arondel")
+        User p1 = User.findByLastName("Migeon")
+        User p2 = User.findByLastName("Sylvestre")
+        def en = new Enrollment(course: cours1 , user: student1)
+        en.save()
+        en = new Enrollment(course: cours2 , user: student1)
+        en.save()
+        en = new Enrollment(course: cours3 , user: student1)
+        en.save()
+        en = new Enrollment(course:cours4 , user: student1)
+        en.save()
+        en = new Enrollment(course: cours5 , user: student1)
+        en.save()
+        en = new Enrollment(course: cours3 , user: student2)
+        en.save()
+        en = new Enrollment(course: cours4 , user: student2)
+        en.save()
+        en = new Enrollment(course: cours5 , user: student2)
+        en.save()
+        en = new Enrollment(course: cours2 , user: p1)
+        en.save()
+        en = new Enrollment(course: cours3 , user: p2)
+        en.save()
     }
     
     /*def cours1  = new Course(
