@@ -19,13 +19,13 @@
                                 <g:set var="params" value="[username: '${sec.username}', course: '${course.key}']"/>
                                 <g:if test="${course.value}">
                                     <a href="${createLink(controller: 'user', action: 'unsubscribe', params: params)}">
-                                        <g:message code="app.user.subscribe"/>
+                                        <g:message code="app.user.unsubscribe"/>
                                     </a>
                                 </g:if>
                                 <g:else>
                                     <g:set var="params" value="[username: '${sec.username}', course: '${course.key}']"/>
                                     <a href="${createLink(controller: 'user', action: 'subscribe', params: params)}">
-                                        <g:message code="app.user.unsubscribe"/>
+                                        <g:message code="app.user.subscribe"/>
                                     </a>
                                 </g:else>
                             </td>
