@@ -7,4 +7,9 @@ class Theme {
 
     static constraints = {
     }
+    
+    static mapping = {
+        sort "label"
+        courses sort: "label"
+    }
 }
