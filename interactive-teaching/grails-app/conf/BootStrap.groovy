@@ -13,9 +13,8 @@ class BootStrap {
             case Environment.DEVELOPMENT:
                 createAdminUserIfRequired()
                 createTestingUsers()
-                createThemes()
-                createCours()
-                createEnrollement()
+                createTestingCourses()
+                createTestingEnrollments()
                 break;
             case Environment.PRODUCTION:
                 createAdminUserIfRequired()
@@ -85,85 +84,124 @@ class BootStrap {
         }
     }
 
-    void createThemes()
-    {
-        def theme = new Theme(label: "Informatique")
-        theme.save()
-        theme= new Theme(label: "Biologie")
-        theme.save()
+    void createTestingCourses() {       
+        def samples = [
+            'M1 Informatique' : [courses: 
+                ["Architectures logicielles",
+                 "Recherche opérationnelle",
+                 "Développement d'applications réparties avec JEE",
+                 "Conception informatique de systèmes interactifs",
+                 "Méthodes agiles",
+                 "Initiation à l'analyse et au traitement d'image",
+                 "Projet",
+                 "Introduction à l'audio numérique",
+                 "Traduction des langages"]
+            ],
+            'L3 Mathématiques' : [courses:
+                ["Statistiques et informatique décisionnelle",
+                 "Mathématiques pour les métiers de l'enseignement secondaire et de l'ingénierie",
+                 "Mathématiques fondamentales",
+                 "Mathématiques, physique, chimie"]
+            ],
+            'M2 Chimie' : [courses:
+                ["Chimie théorique",
+                 "Chimie fondamentale et appliquée",
+                 "Evolution des propriétés électroniques : de la molécule unique à la nanoparticule",
+                 "Ingénierie moléculaire pour les applications de demain"]
+            ],
+            'L2 Biologie' : [courses:
+                ["Analyse microbiologique",
+                 "Anthropobiologie",
+                 "Biochimie métabolique",
+                 "Initiation à la biologie du développement animal et végétal",
+                 "Physiologie animale et biologie du développement"]
+            ]
+        ]
+        
+        if (!Course.list()) {
+            samples.each { degree, attr ->
+                def theme = Theme.findByLabel(degree) ?: new Theme(label: degree).save()
+                println "Creating theme ${degree}..."
+                
+                attr.courses.each { module ->
+                    
+                    def course = new Course(label: module, theme: theme)
+                    
+                    if (course.validate()) {
+                        println "Creating course ${module}..."
+                        course.save(flush: true)
+                    } else {
+                        println "Error in course bootstrap for ${module} (${degree})!"
+                        course.errors.each { err ->
+                            println err
+                        }
+                    }
+                }
+            }
+        }
     }
 
-    void createCours()
-    {
+    void createTestingEnrollments() {
+        def samples = [
+            'damien.arondel@free.fr' : [theme: "M1 Informatique", courses:
+                ["Architectures logicielles",
+                 "Développement d'applications réparties avec JEE",
+                 "Conception informatique de systèmes interactifs",
+                 "Méthodes agiles",
+                 "Projet",
+                 "Traduction des langages"]
+            ],
+            'kevinanatole@yahoo.fr' : [theme: "M1 Informatique", courses:
+                ["Architectures logicielles",
+                 "Développement d'applications réparties avec JEE",
+                 "Conception informatique de systèmes interactifs",
+                 "Méthodes agiles",
+                 "Projet",
+                 "Traduction des langages"]
+            ],
+            'frederic.migeon@irit.fr' : [theme: "M1 Informatique", courses:
+                ["Architectures logicielles",
+                 "Développement d'applications réparties avec JEE"]
+            ],
+            'franck.silvestre@irit.fr' : [theme: "M1 Informatique", courses:
+                ["Développement d'applications réparties avec JEE"]
+            ],
+        ]
 
-        Theme info = Theme.findByLabel("Informatique")
-        Theme bio = Theme.findByLabel("Biologie")
-        def cours = new Course(label : "DCLL", theme: info )
-        cours.save()
-        cours = new Course(label : "IAWS", theme: info )
-        cours.save()
-        cours = new Course(label : "JEE", theme: info )
-        cours.save()
-        cours = new Course(label : "MA", theme: info )
-        cours.save()
-        cours = new Course(label : "MPI", theme: info )
-        cours.save()
-        cours = new Course(label : "OIM", theme: info )
-        cours.save()
-        cours = new Course(label : "CGE", theme: info )
-        cours.save()
-        cours = new Course(label : "Stage", theme: info )
-        cours.save()
-        cours = new Course(label : "TER", theme: info )
-        cours.save()
-        cours = new Course(label : "Biologie Moléculaire", theme: bio )
-        cours.save()
-        cours = new Course(label : "Génétique", theme: bio )
-        cours.save()
+        if (!Enrollment.list()) {
+            samples.each { email, enrollments ->
+                def user = User.findByEmail(email)
+                
+                if (user) {
+                    def theme = Theme.findByLabel(enrollments.theme)
+                    
+                    if (theme) {
+                        enrollments.courses.each { module ->
+                            def course = Course.findByLabelAndTheme(module, theme)
+                            
+                            if (course) {
+                                def enrollment = new Enrollment(course: course, user: user)
+                                
+                                if (enrollment.validate()) {
+                                    println "Creating enrollment ${user} - ${module}..."
+                                    enrollment.save(flush: true)
+                                } else {
+                                    println "Error in enrollment bootstrap for ${module} (${theme})!"
+                                    enrollment.errors.each { err ->
+                                        println err
+                                    }
+                                }
+                            } else {
+                                println "Error in enrollment bootstrap to retrieve the course ${module} (${theme})!"
+                            }
+                        }
+                    } else {
+                        println "Error in enrollment bootstrap to retrieve the theme ${enrollments.theme}!"
+                    }
+                } else {
+                    println "Error in enrollment bootstrap to retrieve the user ${email}!"
+                }
+            }
+        }
     }
-
-    void createEnrollement()
-    {
-        Course cours1 = Course.findByLabel("OIM")
-        Course cours2 = Course.findByLabel("JEE")
-        Course cours3 = Course.findByLabel("IAWS")
-        Course cours4 = Course.findByLabel("TER")
-        Course cours5 = Course.findByLabel("Stage")
-        User student1 = User.findByLastName("Anatole")
-        User student2 = User.findByLastName("Arondel")
-        User p1 = User.findByLastName("Migeon")
-        User p2 = User.findByLastName("Sylvestre")
-        def en = new Enrollment(course: cours1 , user: student1)
-        en.save()
-        en = new Enrollment(course: cours2 , user: student1)
-        en.save()
-        en = new Enrollment(course: cours3 , user: student1)
-        en.save()
-        en = new Enrollment(course:cours4 , user: student1)
-        en.save()
-        en = new Enrollment(course: cours5 , user: student1)
-        en.save()
-        en = new Enrollment(course: cours3 , user: student2)
-        en.save()
-        en = new Enrollment(course: cours4 , user: student2)
-        en.save()
-        en = new Enrollment(course: cours5 , user: student2)
-        en.save()
-        en = new Enrollment(course: cours2 , user: p1)
-        en.save()
-        en = new Enrollment(course: cours3 , user: p2)
-        en.save()
-    }
-    
-    /*def cours1  = new Course(
-     label: "The Great Migeon Show",
-     admin: prof1,
-  )
-  cours1.save()
-
-
-  def en = new Enrollment(course: cours1, student: student1)
-  en.save()
-  en = new Enrollment(course: cours1, student: student2)
-  en.save()*/
 }
