@@ -4,8 +4,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder as SCH
 
 class UserController {
-
-    static allowedMethods = [register: "POST"]
     
     def scaffold = User
     

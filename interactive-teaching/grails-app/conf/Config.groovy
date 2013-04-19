@@ -100,6 +100,7 @@ grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/course/list'
 grails.plugins.springsecurity.securityConfigType = "InterceptUrlMap"
 grails.plugins.springsecurity.interceptUrlMap = [
     '/': [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
+    '/user/register': [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
     '/login/**': [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
     '/js/**': [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
     '/css/**': [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
