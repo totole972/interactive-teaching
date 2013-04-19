@@ -24,12 +24,18 @@
 			                    <td style="padding-right: 20px; text-align: right">
 			                        <g:set var="id_course" value="${course.key.id}"/>
 			                        <g:if test="${course.value}">
-			                            <a class="button small red" href="${createLink(controller: 'user', action: 'unsubscribe', params: [course: id_course])}">
+			                            <a class="button small red" href="${createLink(
+                                            controller: 'user',
+                                            action: 'unsubscribe',
+                                            params: [course: id_course, targetUri: (request.forwardURI - request.contextPath)])}">
 			                                <span><g:message code="app.user.unsubscribe"/></span>
 			                            </a>
 			                        </g:if>
 			                        <g:else>
-			                            <a class="button small green" href="${createLink(controller: 'user', action: 'subscribe', params: [course: id_course])}">
+			                            <a class="button small green" href="${createLink(
+                                            controller: 'user',
+                                            action: 'subscribe',
+                                            params: [course: id_course, targetUri: (request.forwardURI - request.contextPath)])}">
 			                                <span><g:message code="app.user.subscribe"/></span>
 			                            </a>
 			                        </g:else>
