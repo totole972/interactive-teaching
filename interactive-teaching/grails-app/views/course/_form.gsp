@@ -10,31 +10,40 @@
 	<g:textField name="label" required="" value="${courseInstance?.label}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: courseInstance, field: 'admin', 'error')} required">
-	<label for="admin">
-		<g:message code="course.admin.label" default="Admin" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="admin" name="admin.id" from="${interactive.teaching.Teacher.list()}" optionKey="id" required="" value="${courseInstance?.admin?.id}" class="many-to-one"/>
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: courseInstance, field: 'questions', 'error')} ">
 	<label for="questions">
 		<g:message code="course.questions.label" default="Questions" />
 		
 	</label>
-	<g:select name="questions" from="${interactive.teaching.Question.list()}" multiple="multiple" optionKey="id" size="5" value="${courseInstance?.questions*.id}" class="many-to-many"/>
+	
+<ul class="one-to-many">
+<g:each in="${courseInstance?.questions?}" var="q">
+    <li><g:link controller="cours_Question" action="show" id="${q.id}">${q?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="cours_Question" action="create" params="['course.id': courseInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'cours_Question.label', default: 'Cours_Question')])}</g:link>
+</li>
+</ul>
+
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: courseInstance, field: 'students', 'error')} ">
-	<label for="students">
-		<g:message code="course.students.label" default="Students" />
+<div class="fieldcontain ${hasErrors(bean: courseInstance, field: 'theme', 'error')} required">
+	<label for="theme">
+		<g:message code="course.theme.label" default="Theme" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="theme" name="theme.id" from="${interactive.teaching.Theme.list()}" optionKey="id" required="" value="${courseInstance?.theme?.id}" class="many-to-one"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: courseInstance, field: 'users', 'error')} ">
+	<label for="users">
+		<g:message code="course.users.label" default="Users" />
 		
 	</label>
 	
 <ul class="one-to-many">
-<g:each in="${courseInstance?.students?}" var="s">
-    <li><g:link controller="enrollment" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></li>
+<g:each in="${courseInstance?.users?}" var="u">
+    <li><g:link controller="enrollment" action="show" id="${u.id}">${u?.encodeAsHTML()}</g:link></li>
 </g:each>
 <li class="add">
 <g:link controller="enrollment" action="create" params="['course.id': courseInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'enrollment.label', default: 'Enrollment')])}</g:link>
