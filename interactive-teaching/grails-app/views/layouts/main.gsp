@@ -7,11 +7,29 @@
     <body>
         <div id="header">
             <div id="menu">
-                <ul>
-                    <li class='left'><a href='#'><span><g:message code="menu.home"/></span></a></li>
-                    <li class='left'><a href='#'><span><g:message code="menu.courses"/></span></a></li>
-                    <li class='right'><g:link controller="logout"><span><g:message code="menu.logout"/></span></g:link></li>
-                </ul>
+                <nav:menu path="/" scope="user" custom="true">
+                    <li class="${item.data.sub} ${item.data.way}">
+                        <g:if test="${item.children}">
+                            <g:link url='#'><span><nav:title item="${item}"/></span></g:link>
+                            <nav:menu scope="${item.id}" custom="true">
+                                <li>
+                                    <p:callTag tag="g:link" attrs="${linkArgs}">
+                                        <span>
+                                            <nav:title item="${item}"/>
+                                        </span>
+                                    </p:callTag>
+                                </li>
+                             </nav:menu>
+                        </g:if>
+                        <g:else>
+                            <p:callTag tag="g:link" attrs="${linkArgs}">
+	                            <span>
+	                                <nav:title item="${item}"/>
+	                            </span>
+	                        </p:callTag>
+                        </g:else>
+                    </li>
+                </nav:menu>
             </div>
         </div>
         <div id="container"><g:layoutBody/></div>

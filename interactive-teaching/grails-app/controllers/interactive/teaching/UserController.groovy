@@ -56,7 +56,9 @@ class UserController {
             }
         }
         
-        redirect(controller: 'course', action: 'list')
+        // Redirect to the last uri; '/' otherwise
+        def targetUri = params.targetUri ?: '/'
+        redirect(uri: targetUri)
     }
     
     def unsubscribe = {
@@ -77,7 +79,9 @@ class UserController {
             }
         }
         
-        redirect(controller: 'course', action: 'list')
+        // Redirect to the last uri; '/' otherwise
+        def targetUri = params.targetUri ?: '/'
+        redirect(uri: targetUri)
     }
 }
 
