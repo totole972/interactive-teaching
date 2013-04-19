@@ -25,4 +25,25 @@ class CourseController {
             redirect(action: 'list')
         }
     }
+    
+    def list = {
+        User currentUser = getAuthenticatedUser()
+        // Get every theme
+        def themes = [:]
+        Theme.list().each { theme ->
+            // Get every course of the current theme
+            def courses = [:]
+            theme.courses.each { course ->
+                // Check if the current is user has subscribed to the current course
+                if (Enrollment.findByUserAndCourse(currentUser, course) != null) {
+                    courses.put(course, true)
+                } else {
+                    courses.put(course, false)
+                }
+            }
+            themes.put(theme, courses)
+        }
+        // Render the themes
+        [themes: themes]
+    }
 }

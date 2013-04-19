@@ -2,7 +2,7 @@ package interactive.teaching
 
 class Enrollment {
 
-    Student student
+    User user
     Course course
 
     static constraints = {

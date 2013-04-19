@@ -37,6 +37,48 @@ class UserController {
             render(view: "../index", model: [userInstance: urc])
         }
     }
+    
+    def subscribe = {
+        if (!params.course) return
+        
+        def currentUser = getAuthenticatedUser()
+        def course = Course.get(params.course)
+        
+        def enrollment = Enrollment.findByUserAndCourse(currentUser, course)
+        if (enrollment) {
+            flash.message = message(code: 'app.user.subscribe.reject')
+        } else {
+            enrollment = new Enrollment(user: currentUser, course: course)
+            if (!enrollment.save(flush: true)) {
+                flash.message = message(code: 'app.course.unfindable')
+            } else {
+                flash.message = message(code: 'app.user.subscribe.accept')
+            }
+        }
+        
+        redirect(controller: 'course', action: 'list')
+    }
+    
+    def unsubscribe = {
+        if (!params.course) return
+        
+        def currentUser = getAuthenticatedUser()
+        def course = Course.get(params.course)
+        
+        if (!course) {
+            flash.message = message(code: 'app.course.unfindable')
+        } else {
+            def enrollment = Enrollment.findByUserAndCourse(currentUser, course)
+            if (!enrollment) {
+                flash.message = message(code: 'app.user.unsubscribe.reject')
+            } else {
+                enrollment.delete(flush: true)
+                flash.message = message(code: 'app.user.unsubscribe.accept')
+            }
+        }
+        
+        redirect(controller: 'course', action: 'list')
+    }
 }
 
 class UserRegistrationCommand {

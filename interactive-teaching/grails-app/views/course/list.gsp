@@ -1,50 +1,44 @@
-
 <%@ page import="interactive.teaching.Course" %>
-<!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'course.label', default: 'Course')}" />
-		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#list-course" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="list-course" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<table>
-				<thead>
-					<tr>
-					
-						<g:sortableColumn property="label" title="${message(code: 'course.label.label', default: 'Label')}" />
-					
-						<th><g:message code="course.admin.label" default="Admin" /></th>
-					
-					</tr>
-				</thead>
-				<tbody>
-				<g:each in="${courseInstanceList}" status="i" var="courseInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td><g:link action="show" id="${courseInstance.id}">${fieldValue(bean: courseInstance, field: "label")}</g:link></td>
-					
-						<td>${fieldValue(bean: courseInstance, field: "admin")}</td>
-					
-					</tr>
-				</g:each>
-				</tbody>
-			</table>
-			<div class="pagination">
-				<g:paginate total="${courseInstanceTotal}" />
-			</div>
-		</div>
-	</body>
+        <g:each in="${themes}" status="i" var="theme">
+            <table class="no${i}">
+                <thead>
+	                <tr>
+	                    <th colspan="2">${fieldValue(bean: theme.key, field: "label")}</th>
+	                </tr>
+	            </thead>
+	            <g:each in="${theme.value}" var="course">
+                    <tbody>
+		                <tr>
+		                    <td style="padding-left: 20px; text-align: left">
+		                        <g:link action="show" id="${course.key.id}">
+		                            ${fieldValue(bean: course.key, field: "label")}
+		                        </g:link>
+		                    </td>
+		                    <!-- Administrators can't subscribe or unsubscribe -->
+		                    <sec:ifNotGranted roles="ROLE_ADMIN">
+			                    <td style="padding-right: 20px; text-align: right">
+			                        <g:set var="id_course" value="${course.key.id}"/>
+			                        <g:if test="${course.value}">
+			                            <a class="button small red" href="${createLink(controller: 'user', action: 'unsubscribe', params: [course: id_course])}">
+			                                <span><g:message code="app.user.unsubscribe"/></span>
+			                            </a>
+			                        </g:if>
+			                        <g:else>
+			                            <a class="button small green" href="${createLink(controller: 'user', action: 'subscribe', params: [course: id_course])}">
+			                                <span><g:message code="app.user.subscribe"/></span>
+			                            </a>
+			                        </g:else>
+			                    </td>
+			                </sec:ifNotGranted>
+		                </tr>
+                    </tbody>
+	            </g:each>
+            </table>
+        </g:each>
+    </body>
 </html>

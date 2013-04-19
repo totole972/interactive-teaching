@@ -3,8 +3,8 @@ package interactive.teaching
 class Course {
 
     String label
-    Teacher admin
-    static hasMany = [students:Enrollment, questions:Cours_Question]
+    Theme theme
+    static hasMany = [users:Enrollment, questions:Cours_Question]
     
     String toString() {
         label
@@ -14,7 +14,7 @@ class Course {
         
     }
     
-    def addStudent(Student student) {
+    def addUser(User user) {
         
     }
 
