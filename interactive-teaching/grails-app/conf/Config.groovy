@@ -109,7 +109,7 @@ grails.plugins.springsecurity.interceptUrlMap = [
     '/course/create': [ 'ROLE_ADMIN' ],
     '/course/update': [ 'ROLE_ADMIN' ],
     '/course/delete': [ 'ROLE_ADMIN' ],
-    '/user/subscribe': [ 'ROLE_TEACHER', 'ROLE_USER' ],
-    '/user/unsubscribe': [ 'ROLE_TEACHER', 'ROLE_USER' ],
+    '/user/subscribe': [ 'ROLE_TEACHER', 'ROLE_STUDENT' ],
+    '/user/unsubscribe': [ 'ROLE_TEACHER', 'ROLE_STUDENT' ],
     '/**': [ 'IS_AUTHENTICATED_REMEMBERED' ]
 ]
