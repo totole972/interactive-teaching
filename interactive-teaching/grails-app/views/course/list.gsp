@@ -4,35 +4,41 @@
 		<meta name="layout" content="main">
 	</head>
 	<body>
-	    <g:each in="${themes}" var="theme">
-            <h1>${fieldValue(bean: theme.key, field: "label")}</h1>
-            <table>
-	            <tbody>
-	                <g:each in="${theme.value}" var="course">
-	                    <tr>
-	                        <td>
-                                <g:link action="show" id="${course.key.id}">
-                                    ${fieldValue(bean: course.key, field: "label")}
-                                </g:link>
-                            </td>
-                            <td>
-                                <g:set var="params" value="[username: '${sec.username}', course: '${course.key}']"/>
-                                <g:if test="${course.value}">
-                                    <a href="${createLink(controller: 'user', action: 'unsubscribe', params: params)}">
-                                        <g:message code="app.user.unsubscribe"/>
-                                    </a>
-                                </g:if>
-                                <g:else>
-                                    <g:set var="params" value="[username: '${sec.username}', course: '${course.key}']"/>
-                                    <a href="${createLink(controller: 'user', action: 'subscribe', params: params)}">
-                                        <g:message code="app.user.subscribe"/>
-                                    </a>
-                                </g:else>
-                            </td>
-	                    </tr>
-	                </g:each>
-	            </tbody>
-	        </table>
+        <g:each in="${themes}" status="i" var="theme">
+            <table class="no${i}">
+                <thead>
+	                <tr>
+	                    <th colspan="2">${fieldValue(bean: theme.key, field: "label")}</th>
+	                </tr>
+	            </thead>
+	            <g:each in="${theme.value}" var="course">
+                    <tbody>
+		                <tr>
+		                    <td style="padding-left: 20px; text-align: left">
+		                        <g:link action="show" id="${course.key.id}">
+		                            ${fieldValue(bean: course.key, field: "label")}
+		                        </g:link>
+		                    </td>
+		                    <!-- Administrators can't subscribe or unsubscribe -->
+		                    <sec:ifNotGranted roles="ROLE_ADMIN">
+			                    <td style="padding-right: 20px; text-align: right">
+			                        <g:set var="id_course" value="${course.key.id}"/>
+			                        <g:if test="${course.value}">
+			                            <a class="button small red" href="${createLink(controller: 'user', action: 'unsubscribe', params: [course: id_course])}">
+			                                <span><g:message code="app.user.unsubscribe"/></span>
+			                            </a>
+			                        </g:if>
+			                        <g:else>
+			                            <a class="button small green" href="${createLink(controller: 'user', action: 'subscribe', params: [course: id_course])}">
+			                                <span><g:message code="app.user.subscribe"/></span>
+			                            </a>
+			                        </g:else>
+			                    </td>
+			                </sec:ifNotGranted>
+		                </tr>
+                    </tbody>
+	            </g:each>
+            </table>
         </g:each>
-	</body>
+    </body>
 </html>
