@@ -12,5 +12,6 @@ class Course {
 
     static constraints = {
         label blank: false
+        theme blank: false
     }
 }
