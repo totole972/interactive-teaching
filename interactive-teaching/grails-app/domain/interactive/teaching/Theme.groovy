@@ -12,4 +12,8 @@ class Theme {
         sort "label"
         courses sort: "label"
     }
+    
+    String toString() {
+        label
+    }
 }
