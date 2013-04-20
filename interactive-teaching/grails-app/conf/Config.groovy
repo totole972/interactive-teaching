@@ -95,7 +95,7 @@ grails.plugins.springsecurity.userLookup.userDomainClassName = 'interactive.teac
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'interactive.teaching.UserRole'
 grails.plugins.springsecurity.authority.className = 'interactive.teaching.Role'
 grails.plugins.springsecurity.userLookup.usernamePropertyName = 'email'
-grails.plugins.springsecurity.auth.loginFormUrl = '/'
+grails.plugins.springsecurity.auth.loginFormUrl = '/login/auth'
 grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/course/list'
 grails.plugins.springsecurity.securityConfigType = "InterceptUrlMap"
 grails.plugins.springsecurity.interceptUrlMap = [
@@ -105,13 +105,14 @@ grails.plugins.springsecurity.interceptUrlMap = [
     '/js/**': [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
     '/css/**': [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
     '/images/**': [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
-    '/teacher/save': [ 'ROLE_ADMIN' ],//user/create todo
-    '/teacher/create': [ 'ROLE_ADMIN' ],
-    '/course/edit': [ 'ROLE_ADMIN' ],
+    '/course/listMyCourses': [ 'ROLE_TEACHER', 'ROLE_STUDENT' ],
+    '/course/edit/**': [ 'ROLE_ADMIN' ],
     '/course/save': [ 'ROLE_ADMIN' ],
     '/course/create': [ 'ROLE_ADMIN' ],
-    '/course/update': [ 'ROLE_ADMIN' ],
-    '/course/delete': [ 'ROLE_ADMIN' ],
+    '/course/update/**': [ 'ROLE_ADMIN' ],
+    '/course/delete/**': [ 'ROLE_ADMIN' ],
+    '/teacher/save': [ 'ROLE_ADMIN' ],
+    '/teacher/create': [ 'ROLE_ADMIN' ],
     '/user/subscribe': [ 'ROLE_TEACHER', 'ROLE_STUDENT' ],
     '/user/unsubscribe': [ 'ROLE_TEACHER', 'ROLE_STUDENT' ],
     '/**': [ 'IS_AUTHENTICATED_REMEMBERED' ]
