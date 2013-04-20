@@ -10,7 +10,7 @@ class QuestionController {
     def multiplesave()
     {
         System.out.println(params)
-        Teacher teach= Teacher.findById(params["idprof"])
+        User teach= Teacher.findById(params["idprof"])
         Course course= Course.findById(params["idcours"])
         def labels = params["label"]
         labels.each {saveL(teach,course,"${it}")}

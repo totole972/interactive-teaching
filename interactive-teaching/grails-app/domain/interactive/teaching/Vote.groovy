@@ -4,7 +4,7 @@ class Vote {
 
     Session session
     Answer reponse
-    Student etudiant
+    User etudiant
 
     static constraints = {
     }
