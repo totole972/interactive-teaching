@@ -425,6 +425,16 @@
 	background-color: #D4A017;
 }
 
+/* TITLES */
+
+h1 {
+	margin: 0;
+	color: #8f5a0a;
+    padding: 10px 10px;
+    border-bottom: 5px double #8f5a0a;
+    text-align: center;
+}
+
 /* TABLE */
 
 #container>table {
@@ -452,20 +462,227 @@
     border-bottom: 0;
 }
 
-/* LINKS TO SHOW */
+/* LINKS */
 
-#container>table>tbody>tr>td>a:link {
+a:link {
 	text-decoration: none;
 }
 
-#container>table>tbody>tr>td>a:visited {
+a:visited {
     text-decoration: none;
 }
 
-#container>table>tbody>tr>td>a:active {
+a:active {
     text-decoration: none;
 }
 
-#container>table>tbody>tr>td>a:hover {
+a:hover {
     color: red;
+}
+
+/* CREATE/EDIT FORMS AND SHOW PAGES */
+
+strong {
+	color: red;
+}
+
+fieldset,
+.property-list {
+    padding: 0.3em 1.8em 1.25em;
+    position: relative;
+    zoom: 1;
+    border: none;
+}
+
+.property-list .fieldcontain {
+    list-style: none;
+    overflow: hidden;
+    zoom: 1;
+}
+
+.fieldcontain {
+	font-size: 15px;
+    margin-top: 1em;
+}
+
+.fieldcontain label,
+.fieldcontain .property-label {
+    color: #8f5a0a;
+    font-weight: bold;
+    text-align: right;
+    width: 25%;
+}
+
+.fieldcontain label {
+	float: left;
+    width: 27%;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    margin-right: 30px;
+}
+
+.fieldcontain .property-label {
+    float: left;
+}
+
+.fieldcontain .property-value {
+    display: block;
+    margin-left: 27%;
+    margin-bottom: 5px;
+}
+
+input[type=text], select, textarea {
+	width: 250px;
+}
+
+input, select, textarea {
+    background-color: #faf0e6;
+    border: 1px solid #8f5a0a;
+    border-radius: 5px;
+    font-size: 1em;
+    padding: 8px 10px 8px 10px;
+}
+
+
+select[multiple] {
+    vertical-align: top;
+}
+
+textarea {
+    width: 250px;
+    height: 150px;
+    overflow: auto; /* IE always renders vertical scrollbar without this */
+    vertical-align: top;
+}
+
+input[type=checkbox], input[type=radio] {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+}
+
+input:focus, select:focus, textarea:focus {
+	color: #5e2605;
+    background-color: #eee;
+    border: 1px solid #8f5a0a;
+    outline: 0;
+}
+
+.required-indicator {
+    color: red;
+    font-weight: normal;
+    display: inline-block;
+    margin-left: 0.3em;
+    position: relative;
+    top: 0.1em;
+}
+
+ul.one-to-many {
+    list-style-position: inside;
+    vertical-align: top;
+}
+
+.ie6 ul.one-to-many, .ie7 ul.one-to-many {
+    display: inline;
+    zoom: 1;
+}
+
+ul.one-to-many li.add {
+    list-style-type: none;
+}
+
+/* form fields with errors */
+
+.error input, .error select, .error textarea {
+    background: #fff3f3;
+    border-color: #ffaaaa;
+    color: #cc0000;
+}
+
+.error input:focus, .error select:focus, .error textarea:focus {
+       -moz-box-shadow: 0 0 0.5em #ffaaaa;
+    -webkit-box-shadow: 0 0 0.5em #ffaaaa;
+            box-shadow: 0 0 0.5em #ffaaaa;
+}
+
+/* same effects for browsers that support HTML5 client-side validation (these have to be specified separately or IE will ignore the entire rule) */
+
+input:invalid, select:invalid, textarea:invalid {
+    background: #fff3f3;
+    border-color: #ffaaaa;
+    color: #cc0000;
+}
+
+input:invalid:focus, select:invalid:focus, textarea:invalid:focus {
+       -moz-box-shadow: 0 0 0.5em #ffaaaa;
+    -webkit-box-shadow: 0 0 0.5em #ffaaaa;
+            box-shadow: 0 0 0.5em #ffaaaa;
+}
+
+/* ACTION BUTTONS */
+
+.buttons {
+    overflow: hidden;
+    padding: 10px 10px;
+    border-top: 5px double #8f5a0a;
+    font-size: 20px;
+    text-align: center;
+}
+
+.buttons input,
+.buttons a {
+    background-color: transparent;
+    border: 0;
+    color: #8f5a0a;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 0.25em 0;
+    overflow: visible;
+    padding: 0.25em 0.7em;
+    text-decoration: none;
+
+       -moz-border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+            border-radius: 0.3em;
+}
+
+.buttons input:hover, .buttons input:focus,
+.buttons a:hover, .buttons a:focus {
+    background-color: #a67547;
+    color: #fff;
+    outline: none;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+       -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+}
+
+.no-borderradius .buttons input:hover, .no-borderradius .buttons input:focus,
+.no-borderradius .buttons a:hover, .no-borderradius .buttons a:focus {
+    background-color: transparent;
+    color: #8f5a0a;
+    text-decoration: underline;
+}
+
+.buttons .delete, .buttons .edit, .buttons .save {
+    background-position: 0.7em center;
+    background-repeat: no-repeat;
+    text-indent: 25px;
+}
+
+.ie6 .buttons input.delete, .ie6 .buttons input.edit, .ie6 .buttons input.save,
+.ie7 .buttons input.delete, .ie7 .buttons input.edit, .ie7 .buttons input.save {
+    padding-left: 36px;
+}
+
+.buttons .delete {
+    background-image: url(../images/skin/database_delete.png);
+}
+
+.buttons .edit {
+    background-image: url(../images/skin/database_edit.png);
+}
+
+.buttons .save {
+    background-image: url(../images/skin/database_save.png);
 }

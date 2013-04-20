@@ -89,8 +89,21 @@ class CourseController {
             redirect(action: "list")
             return
         }
+        
+        // Get teachers and students list
+        def teachers = []
+        def students = []
+        courseInstance.users.each { enrollment ->
+            def user = enrollment.user
+            def role = UserRole.findByUser(user).role.authority
+            if (role == 'ROLE_TEACHER') {
+                teachers << user
+            } else {
+                students << user
+            }
+        }
 
-        [courseInstance: courseInstance]
+        [courseInstance: courseInstance, teachers: teachers.sort{it.lastName}, students: students.sort{it.lastName}]
     }
 
     def edit(Long id) {
