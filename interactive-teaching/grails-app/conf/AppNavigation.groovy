@@ -15,8 +15,11 @@ def isNotAdmin = { ->
 navigation = {
    user {
        home uri: '/', title: 'menu.home', data:[way:'left'], visible: loggedIn
+       users(controller: 'teacher', title: 'menu.users', data:[way:'left', sub:'has-sub'], visible: isAdmin) {
+           createTeacher action: 'create', title: 'menu.users.teacher.create', visible: isAdmin
+       }
        courses(controller: 'course', title: 'menu.courses', data:[way:'left', sub:'has-sub'], visible: loggedIn) {
-           allcourses action: 'list', title: 'menu.allcourses'
+           allcourses action: 'list', title: 'menu.allcourses', visible: loggedIn
            mycourses action: 'listMyCourses', title: 'menu.mycourses', visible: isNotAdmin
            create action: 'create', title: 'menu.course.create', visible: isAdmin
        }
