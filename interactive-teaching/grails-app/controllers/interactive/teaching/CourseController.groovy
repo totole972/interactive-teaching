@@ -18,7 +18,6 @@ class CourseController {
             flash.message = message(code: 'app.login.required')
             redirect(controller: 'login', action: 'auth')
         } else {
-            flash.message = message(code: 'app.login.logged', args: [principal.username])
             redirect(action: 'list')
         }
     }
