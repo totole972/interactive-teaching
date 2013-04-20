@@ -37,7 +37,9 @@
             <ul>
                 <g:set var="date" value="${new Date()}"/>
                 <li class='left'><span><g:formatDate date="${date}"/></span></li>
-                <li class='right'><span><g:message code="footer.session"/> <i><sec:username/></i></span></li>
+                <sec:ifLoggedIn>
+                    <li class='right'><span><g:message code="footer.session"/> <i><sec:username/></i></span></li>
+                </sec:ifLoggedIn>
             </ul>
         </div>
         <div id="spinner" class="spinner" style="display:none;">
