@@ -4,7 +4,7 @@ class Course {
 
     String label
     Theme theme
-    static hasMany = [users:Enrollment, questions:Cours_Question]
+    static hasMany = [users:Enrollment, questions:Cours_Question, sessions:Session_Cours]
     
     String toString() {
         label

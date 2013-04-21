@@ -46,4 +46,15 @@ class CourseController {
         // Render the themes
         [themes: themes]
     }
+
+    def show(Long id) {
+        def CourseInstance = Course.get(id)
+        if (!CourseInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'Course.label', default: 'Course'), id])
+            redirect(action: "list")
+            return
+        }
+
+        [CourseInstance: CourseInstance]
+    }
 }
