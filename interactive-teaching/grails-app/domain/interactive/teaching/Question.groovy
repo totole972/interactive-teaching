@@ -6,8 +6,8 @@ class Question {
     boolean isOpen
     boolean isVisible
     boolean studentAnswers
-    Teacher teacher
-    static hasMany = [answers:Answer]
+    User teacher
+    static hasMany = [answers:Question_Answer]
     static constraints = {
         label blank:false, nullable:false
         isOpen default : false
