@@ -9,7 +9,7 @@
 			<ol class="property-list course">
                 <li class="fieldcontain">
                     <span id="theme-label" class="property-label">
-                        <g:message code="app.theme.label"/>
+                        <g:message code="app.theme.show"/>
                     </span>
                     <g:if test="${courseInstance?.theme}">
                         <span class="property-value" aria-labelledby="theme-label">
@@ -28,13 +28,13 @@
                     </span>
                     <g:if test="${teachers}">
                         <g:each in="${teachers}" var="t">
-                            <span class="property-value" aria-labelledby="users-label">
+                            <span class="property-value" aria-labelledby="teachers-label">
                                 ${t?.encodeAsHTML()}
                             </span>
                         </g:each>
                     </g:if>
                     <g:else>
-                        <span class="property-value" aria-labelledby="theme-label">
+                        <span class="property-value" aria-labelledby="teachers-label">
                             <g:message code="app.none"/>
                         </span>
                     </g:else>
@@ -45,13 +45,13 @@
                     </span>
                     <g:if test="${students}">
                         <g:each in="${students}" var="s">
-                            <span class="property-value" aria-labelledby="users-label">
+                            <span class="property-value" aria-labelledby="students-label">
                                 ${s?.encodeAsHTML()}
                             </span>
                         </g:each>
                     </g:if>
                     <g:else>
-                        <span class="property-value" aria-labelledby="theme-label">
+                        <span class="property-value" aria-labelledby="students-label">
                             <g:message code="app.none"/>
                         </span>
                     </g:else>

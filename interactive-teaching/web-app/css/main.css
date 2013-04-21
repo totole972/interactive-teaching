@@ -314,7 +314,8 @@
 	-webkit-user-select: none;
 	-khtml-user-select: none;
 	user-select: none;
-	margin-bottom: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .button.full,.button.full span {
@@ -458,7 +459,7 @@ h1 {
     border-bottom: 1px solid #8f5a0a;
 }
 
-#container>table>tbody:last-child>tr>td {
+#container>table>tbody>tr:last-child>td {
     border-bottom: 0;
 }
 

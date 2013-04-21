@@ -15,7 +15,7 @@
 	    <sup class="required-indicator">
             <g:message code="app.required"/>
         </sup>
-		<g:message code="app.theme.label"/>
+		<g:message code="app.theme.show"/>
 	</label>
 	<g:select id="theme" name="theme.id" from="${interactive.teaching.Theme.list()}" optionKey="id" required="" value="${courseInstance?.theme}" class="many-to-one"/>
 </div>
