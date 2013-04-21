@@ -4,7 +4,8 @@ class Course {
 
     String label
     Theme theme
-    static hasMany = [users:Enrollment, questions:Cours_Question]
+    Session lastSession
+    static hasMany = [users:Enrollment, questions:Cours_Question, sessions:Session_Cours]
     
     String toString() {
         label
@@ -13,5 +14,6 @@ class Course {
     static constraints = {
         label blank: false
         theme blank: false
+        lastSession blank : false, nullable: true
     }
 }

@@ -5,6 +5,20 @@ import org.springframework.dao.DataIntegrityViolationException
 class AnswerController {
     def scaffold = Answer
 
+    def creerreponse()
+    {
+        System.out.println(params)
+        Question question = Question.findById(params["idquestion"])
+        def label = params["answer"]
+        def answer= new Answer(label: label )
+        answer.save()
+        question.addToAnswers(answer)
+        System.out.println(question.label)
+        question.save()
+        def adr = '/question/show/'+params["idquestion"]
+        redirect(uri: adr )
+    }
+
     /*static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {

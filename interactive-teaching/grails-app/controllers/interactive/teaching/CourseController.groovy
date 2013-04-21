@@ -5,6 +5,10 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 class CourseController {
     
+    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+
+    def scaffold = Course
+    
     /**
      * Dependency injection for the springSecurityService.
      */
@@ -18,6 +22,7 @@ class CourseController {
             flash.message = message(code: 'app.login.required')
             redirect(controller: 'login', action: 'auth')
         } else {
+            flash.message = message(code: 'app.login.logged', args: [principal.username])
             redirect(action: 'list')
         }
     }

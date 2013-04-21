@@ -1,0 +1,17 @@
+package interactive.teaching
+
+
+
+import grails.test.mixin.*
+import org.junit.*
+
+/**
+ * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
+ */
+@TestFor(Question_Answer)
+class Question_AnswerTests {
+
+    void testSomething() {
+        fail "Implement me"
+    }
+}

@@ -8,6 +8,8 @@ class Answer {
 
     static constraints = {
         label blank: false, nullable: false
+        isCorrect default : false
+        comment nullable: true
     }
     
     def addSession() {
