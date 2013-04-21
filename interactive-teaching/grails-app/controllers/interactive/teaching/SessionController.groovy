@@ -5,9 +5,21 @@ import org.springframework.dao.DataIntegrityViolationException
 class SessionController {
 
     def scaffold = Session
-    /*static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-    def index() {
+    def ajoutsession()
+    {
+        System.out.println(params)
+        def session = new Session(date: new Date())
+        session.save()
+        Course course= Course.findById(params["idcours"])
+        def courssession= new Session_Cours(session: session, cours: course)
+        courssession.save()
+        def adr = '/course/show/'+params["idcours"]
+        redirect(uri: adr )
+    }
+
+    /*def index() {
         redirect(action: "list", params: params)
     }
 

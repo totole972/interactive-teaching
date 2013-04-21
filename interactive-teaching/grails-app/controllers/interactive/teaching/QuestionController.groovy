@@ -10,21 +10,31 @@ class QuestionController {
     def multiplesave()
     {
         System.out.println(params)
-        Teacher teach= Teacher.findById(params["idprof"])
         Course course= Course.findById(params["idcours"])
-        def labels = params["label"]
-        labels.each {saveL(teach,course,"${it}")}
+        def label = params["question"]
+        def currentUser = getAuthenticatedUser()
+        def question = new Question(label: label,teacher: currentUser)
+        question.save()
+        def coursquestion= new Cours_Question(cours: course,question: question)
+        coursquestion.save()
         def adr = '/course/show/'+params["idcours"]
         redirect(uri: adr )
     }
 
-    def saveL(teacher,course,label)
-    {
-           def q = new Question(label : label, teacher: teacher)
-            q.save()
-           def cq= new Cours_Question(cours: course, question: q)
-            cq.save()
+
+    def show(Long id) {
+        def questionInstance = Question.get(id)
+        if (!questionInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'question.label', default: 'Question'), id])
+            redirect(action: "list")
+            return
+        }
+        def coursquestin = Cours_Question.findByQuestion(questionInstance)
+        def session = Session_Cours.findByCours(coursquestin.cours)
+        [questionInstance: questionInstance]
     }
+
+
     /*static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
