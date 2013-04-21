@@ -76,7 +76,10 @@
             <g:submitButton name="newsession" value="newsession"/>
         </g:form>
         <g:each in="${courseInstance.sessions}" status="i" var="session">
-            Session du ${session.session.date}  </br>
+            <g:link  uri="/session/show/${session.session.id}" action="show" id="${session.session.id}">
+                Session du ${fieldValue(bean: session.session, field: "date")}
+            </g:link>
+            </br>
         </g:each>
         </sec:ifAllGranted>
         <h4>Questions</h4>
