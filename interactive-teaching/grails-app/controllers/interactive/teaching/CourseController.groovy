@@ -5,10 +5,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 class CourseController {
     
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-
-    def scaffold = Course
-    
     /**
      * Dependency injection for the springSecurityService.
      */

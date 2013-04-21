@@ -3,46 +3,18 @@ package interactive.teaching
 class Question {
 
     String label
+    Course course
     boolean isOpen
     boolean isVisible
-    boolean studentAnswers
-    User teacher
-    static hasMany = [answers:Question_Answer]
+    boolean enableAnswers
+    static hasMany = [answers:Answer]
+    
     static constraints = {
-        label blank:false, nullable:false
-        isOpen default : false
-        studentAnswers default : true
-        isVisible  default : false
-        teacher blank:false, nullable: false
+        label blank: false
+        course blank: false
     }
-
-    def addAnswer(Answer answer) {
-
+    
+    String toString() {
+        label
     }
-
-    def open() {
-
-    }
-
-    def close() {
-
-    }
-
-    def display() {
-
-    }
-
-    def hide() {
-
-    }
-
-
-    def authorizeStudents() {
-
-    }
-
-    def blockStudents() {
-
-    }
-
 }

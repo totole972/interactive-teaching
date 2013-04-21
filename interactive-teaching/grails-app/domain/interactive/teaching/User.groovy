@@ -15,7 +15,7 @@ class User {
     // Custom user fields
     String firstName
     String lastName
-    static hasMany = [courses:Enrollment]
+    static hasMany = [courses:Enrollment, answers:Answer]
 
 	static constraints = {
 		email blank: false, unique: true, email: true
