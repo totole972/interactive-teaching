@@ -6,6 +6,8 @@ class VoteController {
 
     def scaffold = Vote
 
+
+
     /*static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
