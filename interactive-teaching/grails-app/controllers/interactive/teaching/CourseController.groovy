@@ -107,6 +107,19 @@ class CourseController {
             }
         }
 
+        User currentUser = getAuthenticatedUser()
+        def currentrole = UserRole.findByUser(currentUser).role.authority
+        System.out.println(currentrole)
+        System.out.println(currentUser)
+        System.out.println(courseInstance.questions)
+        if (currentrole == 'ROLE_STUDENT') {
+            def cc = courseInstance.questions
+            System.out.println(cc)
+            courseInstance.questions = cc.findAll {e -> e.question.isVisible==true}
+            //cc.each {if(it.question.isVisible==false){courseInstance.questions.remove(it)}}
+            //courseInstance.questions = new Set<>() {it.question.isVisible==true}
+        }
+        System.out.println(courseInstance.questions)
         [courseInstance: courseInstance, teachers: teachers.sort{it.lastName}, students: students.sort{it.lastName}]
     }
 
