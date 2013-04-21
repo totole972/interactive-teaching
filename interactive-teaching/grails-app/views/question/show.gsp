@@ -17,6 +17,7 @@
 			</ul>
 		</div>
 		<div id="show-question" class="content scaffold-show" role="main">
+        <sec:ifAllGranted roles="ROLE_TEACHER">
             <g:form method="post" >
                 <g:hiddenField name="id" value="${questionInstance?.id}" />
                 <g:hiddenField name="version" value="${questionInstance?.version}" />
@@ -28,6 +29,7 @@
                     <g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                 </fieldset>
             </g:form>
+        </sec:ifAllGranted>
             <h3>${questionInstance.label}</h3>
             <h4>Answers</h4>
             <g:form name="voter" url="[action:'voter',controller:'Vote']">
@@ -40,7 +42,12 @@
                         <h5>Vous avez déjà voté</h5>
                     </g:if>
                     <g:else>
+                        <g:if test="${questionInstance.isOpen}">
                         <g:submitButton name="votes" value="voter"/>
+                        </g:if>
+                        <g:else>
+                            Le vote a été désactivé pour cette question
+                        </g:else>
                     </g:else>
                 </g:if>
                 <g:else>
@@ -48,11 +55,22 @@
                 </g:else>
                 </sec:ifAllGranted>
             </g:form>
+            <sec:ifAllGranted roles="ROLE_STUDENT">
+            <g:if test="${questionInstance.studentAnswers}">
             <g:form name="creationreponse" url="[action:'creerreponse',controller:'Question_Answer']">
                 <g:hiddenField name="idquestion" value="${questionInstance.id}"/>
                 <g:textField name="answer" style="width:100%"/>
                 <g:submitButton name="newanswer" value="newanswer"/>
             </g:form>
+            </g:if>
+            </sec:ifAllGranted>
+            <sec:ifAllGranted roles="ROLE_TEACHER">
+                    <g:form name="creationreponse" url="[action:'creerreponse',controller:'Question_Answer']">
+                        <g:hiddenField name="idquestion" value="${questionInstance.id}"/>
+                        <g:textField name="answer" style="width:100%"/>
+                        <g:submitButton name="newanswer" value="newanswer"/>
+                    </g:form>
+            </sec:ifAllGranted>
 		</div>
 	</body>
 </html>
