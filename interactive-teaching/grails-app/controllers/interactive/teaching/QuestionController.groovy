@@ -29,9 +29,21 @@ class QuestionController {
             redirect(action: "list")
             return
         }
-        def coursquestin = Cours_Question.findByQuestion(questionInstance)
-        def session = Session_Cours.findByCours(coursquestin.cours)
-        [questionInstance: questionInstance]
+        def user = getAuthenticatedUser()
+        def coursquestion = Cours_Question.findByQuestion(questionInstance)
+        def cours = coursquestion.cours
+        def session = cours.lastSession
+        def vote
+        if(Vote.findByEtudiantAndQuestionAndSession(user,questionInstance,session))
+        {
+            vote=true
+        }
+        else
+        {
+            vote=false
+        }
+        System.out.println(vote);
+        [questionInstance: questionInstance,vote:vote]
     }
 
 

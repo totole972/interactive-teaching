@@ -34,11 +34,28 @@
 	<g:checkBox name="isVisible" value="${questionInstance?.isVisible}" />
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: questionInstance, field: 'teacher', 'error')} required">
+	<label for="teacher">
+		<g:message code="question.teacher.label" default="Teacher" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="teacher" name="teacher.id" from="${interactive.teaching.User.list()}" optionKey="id" required="" value="${questionInstance?.teacher?.id}" class="many-to-one"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: questionInstance, field: 'answers', 'error')} ">
 	<label for="answers">
 		<g:message code="question.answers.label" default="Answers" />
 		
 	</label>
-	<g:select name="answers" from="${interactive.teaching.Answer.list()}" multiple="multiple" optionKey="id" size="5" value="${questionInstance?.answers*.id}" class="many-to-many"/>
+	
+<ul class="one-to-many">
+<g:each in="${questionInstance?.answers?}" var="a">
+    <li><g:link controller="question_Answer" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="question_Answer" action="create" params="['question.id': questionInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'question_Answer.label', default: 'Question_Answer')])}</g:link>
+</li>
+</ul>
+
 </div>
 

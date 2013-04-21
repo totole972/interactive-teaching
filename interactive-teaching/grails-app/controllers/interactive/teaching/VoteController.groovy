@@ -6,7 +6,23 @@ class VoteController {
 
     def scaffold = Vote
 
+    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+    def voter()
+    {
+        User currentUser = getAuthenticatedUser()
+        def answer = Answer.findById(params["reponse"])
+        def questionanswer = Question_Answer.findByAnswer(answer)
+        def question = questionanswer.question
+        def coursquestion = Cours_Question.findByQuestion(question)
+        def cours = coursquestion.cours
+        def session = cours.lastSession
+        def vote = new Vote(session: session, reponse : answer, etudiant: currentUser,question: question)
+        vote.save(failOnError: true)
+        System.out.println(vote)
+        def adr = '/question/show/'+question.id
+        redirect(uri: adr )
+    }
 
     /*static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 

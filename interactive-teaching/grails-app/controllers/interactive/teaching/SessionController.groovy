@@ -13,6 +13,8 @@ class SessionController {
         def session = new Session(date: new Date())
         session.save()
         Course course= Course.findById(params["idcours"])
+        course.lastSession=session
+        course.save()
         def courssession= new Session_Cours(session: session, cours: course)
         courssession.save()
         def adr = '/course/show/'+params["idcours"]
