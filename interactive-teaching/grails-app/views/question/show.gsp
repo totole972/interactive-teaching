@@ -98,13 +98,18 @@
                                 </g:if>
                                 <g:else>
 			                        <g:form name="vote" controller="vote" action="vote">
-				                        <g:each in="${questionInstance?.answers}" var="a">
+				                        <g:each in="${questionInstance?.answers}" status="i" var="a">
 				                            <span class="property-value" aria-labelledby="vote-label">
-				                                <g:radio name="answer" value="${a.id}"/>${a?.encodeAsHTML()}
+				                                <g:if test="${i == 0}">
+				                                    <g:radio name="answer" value="${a.id}" checked="true"/>${a?.encodeAsHTML()}
+				                                </g:if>
+				                                <g:else>
+				                                    <g:radio name="answer" value="${a.id}"/>${a?.encodeAsHTML()}
+				                                </g:else>
 				                            </span>
 				                        </g:each>
 				                        <span class="property-value" aria-labelledby="vote-label">
-                                            <g:submitButton name="votes" value="${message(code: 'app.vote')}"/>
+                                            <g:submitButton class="button small blue" style="color: #fff;" name="votes" value="${message(code: 'app.vote')}"/>
 				                        </span>
 				                    </g:form>
 				                </g:else>
