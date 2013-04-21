@@ -10,9 +10,9 @@ class Question {
     static hasMany = [answers:Question_Answer]
     static constraints = {
         label blank:false, nullable:false
-        isOpen default : false
+        isOpen default : true
         studentAnswers default : true
-        isVisible  default : false
+        isVisible  default : true
         teacher blank:false, nullable: false
     }
 
