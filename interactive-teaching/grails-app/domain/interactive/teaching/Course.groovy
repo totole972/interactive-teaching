@@ -9,16 +9,9 @@ class Course {
     String toString() {
         label
     }
-    
-    def addQuestion(Question question) {
-        
-    }
-    
-    def addUser(User user) {
-        
-    }
 
     static constraints = {
         label blank: false
+        theme blank: false
     }
 }

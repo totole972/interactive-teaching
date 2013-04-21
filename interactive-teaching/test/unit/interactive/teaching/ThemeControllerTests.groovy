@@ -5,9 +5,9 @@ package interactive.teaching
 import org.junit.*
 import grails.test.mixin.*
 
-@TestFor(CourseController)
-@Mock(Course)
-class CourseControllerTests {
+@TestFor(ThemeController)
+@Mock(Theme)
+class ThemeControllerTests {
 
     def populateValidParams(params) {
         assert params != null
@@ -17,139 +17,139 @@ class CourseControllerTests {
 
     void testIndex() {
         controller.index()
-        assert "/course/list" == response.redirectedUrl
+        assert "/theme/list" == response.redirectedUrl
     }
 
     void testList() {
 
         def model = controller.list()
 
-        assert model.courseInstanceList.size() == 0
-        assert model.courseInstanceTotal == 0
+        assert model.themeInstanceList.size() == 0
+        assert model.themeInstanceTotal == 0
     }
 
     void testCreate() {
         def model = controller.create()
 
-        assert model.courseInstance != null
+        assert model.themeInstance != null
     }
 
     void testSave() {
         controller.save()
 
-        assert model.courseInstance != null
-        assert view == '/course/create'
+        assert model.themeInstance != null
+        assert view == '/theme/create'
 
         response.reset()
 
         populateValidParams(params)
         controller.save()
 
-        assert response.redirectedUrl == '/course/show/1'
+        assert response.redirectedUrl == '/theme/show/1'
         assert controller.flash.message != null
-        assert Course.count() == 1
+        assert Theme.count() == 1
     }
 
     void testShow() {
         controller.show()
 
         assert flash.message != null
-        assert response.redirectedUrl == '/course/list'
+        assert response.redirectedUrl == '/theme/list'
 
         populateValidParams(params)
-        def course = new Course(params)
+        def theme = new Theme(params)
 
-        assert course.save() != null
+        assert theme.save() != null
 
-        params.id = course.id
+        params.id = theme.id
 
         def model = controller.show()
 
-        assert model.courseInstance == course
+        assert model.themeInstance == theme
     }
 
     void testEdit() {
         controller.edit()
 
         assert flash.message != null
-        assert response.redirectedUrl == '/course/list'
+        assert response.redirectedUrl == '/theme/list'
 
         populateValidParams(params)
-        def course = new Course(params)
+        def theme = new Theme(params)
 
-        assert course.save() != null
+        assert theme.save() != null
 
-        params.id = course.id
+        params.id = theme.id
 
         def model = controller.edit()
 
-        assert model.courseInstance == course
+        assert model.themeInstance == theme
     }
 
     void testUpdate() {
         controller.update()
 
         assert flash.message != null
-        assert response.redirectedUrl == '/course/list'
+        assert response.redirectedUrl == '/theme/list'
 
         response.reset()
 
         populateValidParams(params)
-        def course = new Course(params)
+        def theme = new Theme(params)
 
-        assert course.save() != null
+        assert theme.save() != null
 
         // test invalid parameters in update
-        params.id = course.id
+        params.id = theme.id
         //TODO: add invalid values to params object
 
         controller.update()
 
-        assert view == "/course/edit"
-        assert model.courseInstance != null
+        assert view == "/theme/edit"
+        assert model.themeInstance != null
 
-        course.clearErrors()
+        theme.clearErrors()
 
         populateValidParams(params)
         controller.update()
 
-        assert response.redirectedUrl == "/course/show/$course.id"
+        assert response.redirectedUrl == "/theme/show/$theme.id"
         assert flash.message != null
 
         //test outdated version number
         response.reset()
-        course.clearErrors()
+        theme.clearErrors()
 
         populateValidParams(params)
-        params.id = course.id
+        params.id = theme.id
         params.version = -1
         controller.update()
 
-        assert view == "/course/edit"
-        assert model.courseInstance != null
-        assert model.courseInstance.errors.getFieldError('version')
+        assert view == "/theme/edit"
+        assert model.themeInstance != null
+        assert model.themeInstance.errors.getFieldError('version')
         assert flash.message != null
     }
 
     void testDelete() {
         controller.delete()
         assert flash.message != null
-        assert response.redirectedUrl == '/course/list'
+        assert response.redirectedUrl == '/theme/list'
 
         response.reset()
 
         populateValidParams(params)
-        def course = new Course(params)
+        def theme = new Theme(params)
 
-        assert course.save() != null
-        assert Course.count() == 1
+        assert theme.save() != null
+        assert Theme.count() == 1
 
-        params.id = course.id
+        params.id = theme.id
 
         controller.delete()
 
-        assert Course.count() == 0
-        assert Course.get(course.id) == null
-        assert response.redirectedUrl == '/course/list'
+        assert Theme.count() == 0
+        assert Theme.get(theme.id) == null
+        assert response.redirectedUrl == '/theme/list'
     }
 }

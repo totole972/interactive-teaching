@@ -60,6 +60,8 @@ grails.project.dependency.resolution = {
 
         compile ':cache:1.0.1'
         
+        // Added plugins
         compile ":spring-security-core:1.2.7.3"
+        compile ":platform-core:1.0.RC5"
     }
 }
