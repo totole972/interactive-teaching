@@ -82,12 +82,8 @@ class CourseController {
     }
     
     def show(Long id) {
+        // Check the existence of the course in SecurityFilters.before
         def courseInstance = Course.get(id)
-        if (!courseInstance) {
-            flash.message = message(code: 'app.course.unfindable')
-            redirect(action: "list")
-            return
-        }
         
         // Get teachers and students list
         def teachers = []
