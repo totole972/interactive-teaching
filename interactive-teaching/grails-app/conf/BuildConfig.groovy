@@ -63,5 +63,6 @@ grails.project.dependency.resolution = {
         // Added plugins
         compile ":spring-security-core:1.2.7.3"
         compile ":platform-core:1.0.RC5"
+        compile ":google-visualization:0.6.1"
     }
 }
