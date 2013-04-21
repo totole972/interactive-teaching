@@ -1,7 +1,6 @@
 import interactive.teaching.Course
 import interactive.teaching.Enrollment
 import interactive.teaching.Role
-import interactive.teaching.Student
 import interactive.teaching.Theme
 import interactive.teaching.User
 import interactive.teaching.UserRole

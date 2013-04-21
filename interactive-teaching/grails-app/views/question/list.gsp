@@ -32,6 +32,8 @@
 					
 						<g:sortableColumn property="isVisible" title="${message(code: 'question.isVisible.label', default: 'Is Visible')}" />
 					
+						<th><g:message code="question.teacher.label" default="Teacher" /></th>
+					
 					</tr>
 				</thead>
 				<tbody>
@@ -45,6 +47,8 @@
 						<td><g:formatBoolean boolean="${questionInstance.studentAnswers}" /></td>
 					
 						<td><g:formatBoolean boolean="${questionInstance.isVisible}" /></td>
+					
+						<td>${fieldValue(bean: questionInstance, field: "teacher")}</td>
 					
 					</tr>
 				</g:each>

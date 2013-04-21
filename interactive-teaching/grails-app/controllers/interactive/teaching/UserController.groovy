@@ -4,17 +4,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder as SCH
 
 class UserController {
-
-    static allowedMethods = [register: "POST"]
-    
-    def scaffold = User
     
     def daoAuthenticationProvider
     
     def register = { UserRegistrationCommand urc ->
         if (!params.register) return
         
-        def role = Role.findByAuthority("ROLE_TEACHER") ?: new Role(authority: "ROLE_STUDENT").save()
+        def role = Role.findByAuthority("ROLE_STUDENT") ?: new Role(authority: "ROLE_STUDENT").save()
         
         if (!urc.hasErrors()) {
             def props = urc.properties
@@ -56,7 +52,9 @@ class UserController {
             }
         }
         
-        redirect(controller: 'course', action: 'list')
+        // Redirect to the last uri; '/' otherwise
+        def targetUri = params.targetUri ?: '/'
+        redirect(uri: targetUri)
     }
     
     def unsubscribe = {
@@ -77,7 +75,33 @@ class UserController {
             }
         }
         
-        redirect(controller: 'course', action: 'list')
+        // Redirect to the last uri; '/' otherwise
+        def targetUri = params.targetUri ?: '/'
+        redirect(uri: targetUri)
+    }
+    
+    def createTeacher = {
+        render(view: "../teacher/create", model: [userInstance: new User(params)])
+    }
+    
+    def saveTeacher = { UserRegistrationCommand urc ->
+        def role = Role.findByAuthority("ROLE_TEACHER") ?: new Role(authority: "ROLE_TEACHER").save()
+        
+        if (!urc.hasErrors()) {
+            def props = urc.properties
+            def teacher = new User(props)
+            
+            if (!teacher.save()) {
+                render(view: "../teacher/create", model: [userInstance: teacher])
+            }
+            
+            UserRole.create teacher, role
+            
+            flash.message = message(code: 'app.teacher.created')
+            redirect(controller: 'course', action: 'list')
+        } else {
+            render(view: "../teacher/create", model: [userInstance: urc])
+        }
     }
 }
 

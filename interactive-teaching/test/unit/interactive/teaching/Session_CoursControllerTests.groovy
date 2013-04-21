@@ -1,13 +1,10 @@
 package interactive.teaching
 
-
-
-import org.junit.*
 import grails.test.mixin.*
 
-@TestFor(Session_QuestionController)
-@Mock(Session_Question)
-class Session_QuestionControllerTests {
+@TestFor(Session_CoursController)
+@Mock(Session_Cours)
+class Session_CoursControllerTests {
 
     def populateValidParams(params) {
         assert params != null
@@ -47,7 +44,7 @@ class Session_QuestionControllerTests {
 
         assert response.redirectedUrl == '/session_Question/show/1'
         assert controller.flash.message != null
-        assert Session_Question.count() == 1
+        assert Session_Cours.count() == 1
     }
 
     void testShow() {
@@ -57,7 +54,7 @@ class Session_QuestionControllerTests {
         assert response.redirectedUrl == '/session_Question/list'
 
         populateValidParams(params)
-        def session_Question = new Session_Question(params)
+        def session_Question = new Session_Cours(params)
 
         assert session_Question.save() != null
 
@@ -75,7 +72,7 @@ class Session_QuestionControllerTests {
         assert response.redirectedUrl == '/session_Question/list'
 
         populateValidParams(params)
-        def session_Question = new Session_Question(params)
+        def session_Question = new Session_Cours(params)
 
         assert session_Question.save() != null
 
@@ -95,7 +92,7 @@ class Session_QuestionControllerTests {
         response.reset()
 
         populateValidParams(params)
-        def session_Question = new Session_Question(params)
+        def session_Question = new Session_Cours(params)
 
         assert session_Question.save() != null
 
@@ -139,17 +136,17 @@ class Session_QuestionControllerTests {
         response.reset()
 
         populateValidParams(params)
-        def session_Question = new Session_Question(params)
+        def session_Question = new Session_Cours(params)
 
         assert session_Question.save() != null
-        assert Session_Question.count() == 1
+        assert Session_Cours.count() == 1
 
         params.id = session_Question.id
 
         controller.delete()
 
-        assert Session_Question.count() == 0
-        assert Session_Question.get(session_Question.id) == null
+        assert Session_Cours.count() == 0
+        assert Session_Cours.get(session_Question.id) == null
         assert response.redirectedUrl == '/session_Question/list'
     }
 }

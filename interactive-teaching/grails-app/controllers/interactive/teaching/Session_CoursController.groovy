@@ -1,10 +1,8 @@
 package interactive.teaching
 
-import org.springframework.dao.DataIntegrityViolationException
+class Session_CoursController {
 
-class Session_QuestionController {
-
-    def scaffold = Session_Question
+    def scaffold = Session_Cours
     /*static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
@@ -13,28 +11,28 @@ class Session_QuestionController {
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        [session_QuestionInstanceList: Session_Question.list(params), session_QuestionInstanceTotal: Session_Question.count()]
+        [session_QuestionInstanceList: Session_Cours.list(params), session_QuestionInstanceTotal: Session_Cours.count()]
     }
 
     def create() {
-        [session_QuestionInstance: new Session_Question(params)]
+        [session_QuestionInstance: new Session_Cours(params)]
     }
 
     def save() {
-        def session_QuestionInstance = new Session_Question(params)
+        def session_QuestionInstance = new Session_Cours(params)
         if (!session_QuestionInstance.save(flush: true)) {
             render(view: "create", model: [session_QuestionInstance: session_QuestionInstance])
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'session_Question.label', default: 'Session_Question'), session_QuestionInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'session_Question.label', default: 'Session_Cours'), session_QuestionInstance.id])
         redirect(action: "show", id: session_QuestionInstance.id)
     }
 
     def show(Long id) {
-        def session_QuestionInstance = Session_Question.get(id)
+        def session_QuestionInstance = Session_Cours.get(id)
         if (!session_QuestionInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'session_Question.label', default: 'Session_Question'), id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'session_Question.label', default: 'Session_Cours'), id])
             redirect(action: "list")
             return
         }
@@ -43,9 +41,9 @@ class Session_QuestionController {
     }
 
     def edit(Long id) {
-        def session_QuestionInstance = Session_Question.get(id)
+        def session_QuestionInstance = Session_Cours.get(id)
         if (!session_QuestionInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'session_Question.label', default: 'Session_Question'), id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'session_Question.label', default: 'Session_Cours'), id])
             redirect(action: "list")
             return
         }
@@ -54,9 +52,9 @@ class Session_QuestionController {
     }
 
     def update(Long id, Long version) {
-        def session_QuestionInstance = Session_Question.get(id)
+        def session_QuestionInstance = Session_Cours.get(id)
         if (!session_QuestionInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'session_Question.label', default: 'Session_Question'), id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'session_Question.label', default: 'Session_Cours'), id])
             redirect(action: "list")
             return
         }
@@ -64,8 +62,8 @@ class Session_QuestionController {
         if (version != null) {
             if (session_QuestionInstance.version > version) {
                 session_QuestionInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                        [message(code: 'session_Question.label', default: 'Session_Question')] as Object[],
-                        "Another user has updated this Session_Question while you were editing")
+                        [message(code: 'session_Question.label', default: 'Session_Cours')] as Object[],
+                        "Another user has updated this Session_Cours while you were editing")
                 render(view: "edit", model: [session_QuestionInstance: session_QuestionInstance])
                 return
             }
@@ -78,25 +76,25 @@ class Session_QuestionController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'session_Question.label', default: 'Session_Question'), session_QuestionInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'session_Question.label', default: 'Session_Cours'), session_QuestionInstance.id])
         redirect(action: "show", id: session_QuestionInstance.id)
     }
 
     def delete(Long id) {
-        def session_QuestionInstance = Session_Question.get(id)
+        def session_QuestionInstance = Session_Cours.get(id)
         if (!session_QuestionInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'session_Question.label', default: 'Session_Question'), id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'session_Question.label', default: 'Session_Cours'), id])
             redirect(action: "list")
             return
         }
 
         try {
             session_QuestionInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'session_Question.label', default: 'Session_Question'), id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'session_Question.label', default: 'Session_Cours'), id])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'session_Question.label', default: 'Session_Question'), id])
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'session_Question.label', default: 'Session_Cours'), id])
             redirect(action: "show", id: id)
         }
     }  */

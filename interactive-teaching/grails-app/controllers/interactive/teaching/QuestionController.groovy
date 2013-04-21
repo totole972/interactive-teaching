@@ -10,21 +10,43 @@ class QuestionController {
     def multiplesave()
     {
         System.out.println(params)
-        Teacher teach= Teacher.findById(params["idprof"])
         Course course= Course.findById(params["idcours"])
-        def labels = params["label"]
-        labels.each {saveL(teach,course,"${it}")}
+        def label = params["question"]
+        def currentUser = getAuthenticatedUser()
+        def question = new Question(label: label,teacher: currentUser,isOpen: true,isVisible: true,studentAnswers: true)
+        question.save()
+        def coursquestion= new Cours_Question(cours: course,question: question)
+        coursquestion.save()
         def adr = '/course/show/'+params["idcours"]
         redirect(uri: adr )
     }
 
-    def saveL(teacher,course,label)
-    {
-           def q = new Question(label : label, teacher: teacher)
-            q.save()
-           def cq= new Cours_Question(cours: course, question: q)
-            cq.save()
+
+    def show(Long id) {
+        def questionInstance = Question.get(id)
+        if (!questionInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'question.label', default: 'Question'), id])
+            redirect(action: "list")
+            return
+        }
+        def user = getAuthenticatedUser()
+        def coursquestion = Cours_Question.findByQuestion(questionInstance)
+        def cours = coursquestion.cours
+        def session = cours.lastSession
+        def vote
+        if(Vote.findByEtudiantAndQuestionAndSession(user,questionInstance,session))
+        {
+            vote=true
+        }
+        else
+        {
+            vote=false
+        }
+        System.out.println(vote);
+        [questionInstance: questionInstance,vote:vote]
     }
+
+
     /*static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {

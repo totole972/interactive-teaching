@@ -5,9 +5,49 @@ import org.springframework.dao.DataIntegrityViolationException
 class SessionController {
 
     def scaffold = Session
-    /*static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-    def index() {
+    def ajoutsession()
+    {
+        System.out.println(params)
+        def session = new Session(date: new Date())
+        session.save()
+        Course course= Course.findById(params["idcours"])
+        course.lastSession=session
+        course.save()
+        def courssession= new Session_Cours(session: session, cours: course)
+        courssession.save()
+        def adr = '/course/show/'+params["idcours"]
+        redirect(uri: adr )
+    }
+
+    def show(Long id) {
+        def sessionInstance = Session.get(id)
+        if (!sessionInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'session.label', default: 'Session'), id])
+            redirect(action: "list")
+            return
+        }
+        def sessioncours = Session_Cours.findBySession(sessionInstance)
+        def coursquestion = Cours_Question.findAllByCours(sessioncours.cours)
+        def questions = coursquestion.question
+        def statscolumns = [['string', 'Réponse'], ['number', 'Nombre de votes']]
+        def data = [:]
+        questions.each {q ->
+            def test =[];
+            def answers = q.answers.answer
+            answers.each { a ->
+                def votes = Vote.findAllBySessionAndReponse(sessionInstance,a).size()
+                test.add([a.label.toString(),votes])
+            }
+            data.put(q,test)
+        }
+        System.out.println(data)
+
+        [sessionInstance: sessionInstance, data : data, colonnes : statscolumns]
+    }
+
+    /*def index() {
         redirect(action: "list", params: params)
     }
 

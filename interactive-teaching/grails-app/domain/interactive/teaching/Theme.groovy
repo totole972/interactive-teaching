@@ -6,5 +6,15 @@ class Theme {
     static hasMany = [courses:Course]
 
     static constraints = {
+        label blank: false, unique: true
+    }
+    
+    static mapping = {
+        sort "label"
+        courses sort: "label"
+    }
+    
+    String toString() {
+        label
     }
 }

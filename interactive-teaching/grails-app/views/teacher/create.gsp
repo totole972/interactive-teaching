@@ -1,12 +1,12 @@
-<%@ page import="interactive.teaching.Course" %>
+<%@ page import="interactive.teaching.User" %>
 <html>
 	<head>
 		<meta name="layout" content="main">
 	</head>
 	<body>
-        <h1><g:message code="app.course.create"/></h1>
-        <div id="create-course" class="content scaffold-create" role="main">
-			<g:form action="save">
+        <h1>${message(code: 'app.teacher.create')}</h1>
+        <div id="create-user" class="content scaffold-create" role="main">
+			<g:form controller="user" action="saveTeacher">
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>

@@ -1,11 +1,9 @@
 package interactive.teaching
 
-class Vote {
+class Question_Answer {
 
-    Session session
-    Answer reponse
-    User etudiant
     Question question
+    Answer answer
 
     static constraints = {
     }
