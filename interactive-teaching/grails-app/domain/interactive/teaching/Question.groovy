@@ -7,7 +7,7 @@ class Question {
     boolean isOpen
     boolean isVisible
     boolean enableAnswers
-    static hasMany = [answers:Answer]
+    static hasMany = [answers:Answer, votes:Vote]
     
     static constraints = {
         label blank: false

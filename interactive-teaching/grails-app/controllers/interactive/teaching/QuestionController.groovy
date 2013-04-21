@@ -112,4 +112,25 @@ class QuestionController {
             redirect(action: "show", id: id)
         }
     }
+    
+    def showChart(Long id) {
+        def questionInstance = Question.get(id)
+        
+        if (!questionInstance) {
+            flash.message = message(code: 'app.question.unfindable')
+            redirect(controller: "course", action: "list")
+            return
+        }
+        
+        def statscolumns = [['string', message(code: 'app.answers.label')], ['number', message(code: 'app.vote.number')]]
+        def data = [:]
+        def result = []
+        questionInstance.answers.each { answer ->
+            def votes = Vote.findAllBySessionAndAnswer(questionInstance.course.lastSession, answer).size()
+            result.add([answer, votes])
+        }
+        data.put(questionInstance, result)
+
+        [questionInstance: questionInstance, data: data, colonnes: statscolumns]
+    }
 }
