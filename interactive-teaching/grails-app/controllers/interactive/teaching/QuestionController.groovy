@@ -13,7 +13,7 @@ class QuestionController {
         Course course= Course.findById(params["idcours"])
         def label = params["question"]
         def currentUser = getAuthenticatedUser()
-        def question = new Question(label: label,teacher: currentUser)
+        def question = new Question(label: label,teacher: currentUser,isOpen: true,isVisible: true,studentAnswers: true)
         question.save()
         def coursquestion= new Cours_Question(cours: course,question: question)
         coursquestion.save()
