@@ -45,7 +45,9 @@
                 <g:each in="${data}" status="i" var="question">
                     <tr>
                         <td>
-                                 ${question.key.label}
+                            <g:link  uri="/question/show/${question.key.id}" action="show" id="${question.key.id}">
+                                ${fieldValue(bean: question.key, field: "label")}
+                            </g:link>
                         </td>
                         <td>
                             <div id="${question.key.id}">
